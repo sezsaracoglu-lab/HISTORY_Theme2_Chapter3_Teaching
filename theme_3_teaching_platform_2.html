@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Theme 3 · Applied Psychology, Prejudice & Intellectual Snobbery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0f0e0c;
+    --bg-2: #15130f;
+    --bg-card: #1a1814;
+    --bg-card-2: #1f1c17;
+    --gold: #c9a96e;
+    --gold-dim: #8a7548;
+    --gold-bright: #e0c388;
+    --text: #ebe6db;
+    --text-dim: #968f82;
+    --text-faint: #5e584e;
+    --border: #2a2520;
+    --border-bright: #3d362d;
+    --green: #7ea870;
+    --red: #b56b6b;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    background: var(--bg-2);
+    border-right: 1px solid var(--border);
+    padding: 2.5rem 1.75rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-brand {
+    margin-bottom: 3rem;
+  }
+  .sidebar-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .sidebar-title {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    line-height: 1.05;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .sidebar-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .sidebar-sub {
+    margin-top: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+  }
+  .nav-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    padding: 0.85rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .nav-btn .nav-num {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-faint);
+    font-size: 0.95rem;
+    width: 1.2rem;
+  }
+  .nav-btn:hover {
+    color: var(--text);
+    background: var(--bg-card);
+  }
+  .nav-btn.active {
+    color: var(--gold);
+    background: var(--bg-card);
+    border-color: var(--border-bright);
+  }
+  .nav-btn.active .nav-num { color: var(--gold-dim); }
+
+  .sidebar-foot {
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    line-height: 1.5;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  /* ============ MAIN ============ */
+  .main {
+    padding: 3.5rem 4rem 5rem;
+    max-width: 1400px;
+    width: 100%;
+  }
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ OVERVIEW ============ */
+  .hero {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: 3.6rem;
+    line-height: 1.05;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1rem;
+    max-width: 900px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--text-dim);
+    max-width: 700px;
+    line-height: 1.4;
+  }
+  .stats-row {
+    display: flex;
+    gap: 3rem;
+    margin: 2.5rem 0 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat .num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .stat .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  .overview-section-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--text);
+    margin: 2rem 0 1.25rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .overview-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1.4rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 130px;
+  }
+  .lesson-card:hover {
+    border-color: var(--gold-dim);
+    background: var(--bg-card-2);
+    transform: translateY(-2px);
+  }
+  .lesson-card-num {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 0.95rem;
+  }
+  .lesson-card-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.25;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .lesson-card-tag {
+    margin-top: auto;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .big-picture {
+    background: var(--bg-card);
+    border-left: 2px solid var(--gold);
+    padding: 2rem 2.5rem;
+    margin: 3rem 0 2rem;
+  }
+  .big-picture-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .big-picture p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .big-picture p + p { margin-top: 1rem; }
+  .big-picture em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* ============ LESSONS ============ */
+  .lesson-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+  .lesson-counter {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 1rem;
+  }
+  .lesson-counter strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .lesson-nav-btns {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .lesson-nav-btn {
+    background: transparent;
+    border: 1px solid var(--border-bright);
+    color: var(--text-dim);
+    padding: 0.55rem 1.1rem;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+  .lesson-nav-btn:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+  .lesson-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .lesson-header {
+    margin-bottom: 2rem;
+  }
+  .lesson-header-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.85rem;
+  }
+  .lesson-title {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    line-height: 1.1;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .lesson-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .lesson-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    max-width: 720px;
+  }
+
+  .lesson-body {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 2.5rem;
+    align-items: start;
+    margin-bottom: 2rem;
+  }
+  .diagram-frame {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 2px;
+  }
+  .diagram-frame svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .lesson-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .key-points {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1.6rem;
+  }
+  .key-points-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .key-points ul {
+    list-style: none;
+  }
+  .key-points li {
+    position: relative;
+    padding: 0.6rem 0 0.6rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .key-points li:last-child { border-bottom: none; }
+  .key-points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.05rem;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .key-points li strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .memory-hook {
+    background: linear-gradient(135deg, rgba(201,169,110,0.08), rgba(201,169,110,0.02));
+    border: 1px solid var(--gold-dim);
+    padding: 1.4rem 1.6rem;
+    border-radius: 2px;
+  }
+  .memory-hook-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .memory-hook-title::before {
+    content: '◆';
+    font-size: 0.7rem;
+  }
+  .memory-hook p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.45;
+    color: var(--text);
+  }
+
+  /* ============ FLASHCARDS ============ */
+  .fc-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .fc-filter {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+  .fc-filter:hover { color: var(--text); border-color: var(--text-dim); }
+  .fc-filter.active {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(201,169,110,0.05);
+  }
+  .fc-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .fc-btn {
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    padding: 0.55rem 1.2rem;
+    font-family: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .fc-btn:hover { background: var(--gold-bright); }
+  .fc-btn.secondary {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border-bright);
+  }
+  .fc-btn.secondary:hover { color: var(--gold); border-color: var(--gold); }
+
+  .fc-counter {
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+  .fc-counter strong { color: var(--gold); font-weight: 500; }
+
+  .flashcard-stage {
+    perspective: 1500px;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+  }
+  .flashcard {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    cursor: pointer;
+  }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    text-align: center;
+    border-radius: 3px;
+  }
+  .fc-face.back {
+    transform: rotateY(180deg);
+    background: var(--bg-card-2);
+    border-color: var(--gold-dim);
+  }
+  .fc-topic {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .fc-front-text {
+    font-family: var(--serif);
+    font-size: 2rem;
+    line-height: 1.2;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .fc-back-text {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .fc-back-text em { color: var(--gold); font-style: italic; }
+  .fc-hint {
+    position: absolute;
+    bottom: 1rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .fc-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  /* ============ MCQ ============ */
+  .mcq-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .mcq-progress-text {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 1.05rem;
+  }
+  .mcq-progress-text strong { color: var(--gold); font-weight: 500; }
+  .mcq-score {
+    font-family: var(--serif);
+    color: var(--gold);
+    font-size: 1.1rem;
+  }
+  .mcq-score strong {
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .mcq-progress-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+  }
+  .mcq-progress-fill {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  .mcq-question {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 2rem;
+    max-width: 850px;
+  }
+  .mcq-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+  .mcq-option {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.1rem 1.4rem;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .mcq-option:hover:not(:disabled) {
+    border-color: var(--gold-dim);
+    background: var(--bg-card-2);
+  }
+  .mcq-option:disabled { cursor: default; }
+  .mcq-option-letter {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    width: 1.5rem;
+  }
+  .mcq-option.correct {
+    border-color: var(--green);
+    background: rgba(126, 168, 112, 0.08);
+  }
+  .mcq-option.incorrect {
+    border-color: var(--red);
+    background: rgba(181, 107, 107, 0.08);
+  }
+  .mcq-option.correct .mcq-option-letter { color: var(--green); }
+  .mcq-option.incorrect .mcq-option-letter { color: var(--red); }
+
+  .mcq-feedback {
+    background: var(--bg-card);
+    border-left: 2px solid var(--gold);
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.5rem;
+    border-radius: 2px;
+    display: none;
+  }
+  .mcq-feedback.show { display: block; animation: fadeIn 0.3s ease; }
+  .mcq-feedback-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+  }
+  .mcq-feedback p {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .mcq-feedback em { color: var(--gold); font-style: italic; }
+
+  .mcq-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .mcq-final {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  .mcq-final-num {
+    font-family: var(--serif);
+    font-size: 5rem;
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .mcq-final-label {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-top: 1rem;
+  }
+  .mcq-final-msg {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    margin: 1.5rem auto 2rem;
+    max-width: 500px;
+  }
+
+  /* SVG common */
+  .sv-bg { fill: transparent; }
+  .sv-line { stroke: var(--gold-dim); stroke-width: 1.5; fill: none; }
+  .sv-line-bright { stroke: var(--gold); stroke-width: 2; fill: none; }
+  .sv-arrow { fill: var(--gold); }
+  .sv-text { fill: #ebe6db; font-family: 'DM Sans', sans-serif; font-size: 13px; }
+  .sv-text-italic { fill: #c9a96e; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; }
+  .sv-text-title { fill: #c9a96e; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; }
+  .sv-text-small { fill: #968f82; font-family: 'DM Sans', sans-serif; font-size: 11px; }
+  .sv-box { fill: #1f1c17; stroke: #3d362d; stroke-width: 1; }
+  .sv-box-gold { fill: rgba(201,169,110,0.08); stroke: #c9a96e; stroke-width: 1.5; }
+
+  @media (max-width: 1100px) {
+    .lesson-body { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 800px) {
+    body { grid-template-columns: 1fr; }
+    .sidebar { position: relative; height: auto; }
+    .main { padding: 2rem 1.5rem; }
+    .hero-title { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-eyebrow">Theme III</div>
+    <div class="sidebar-title">Applied <em>Psychology</em></div>
+    <div class="sidebar-sub">Prejudice & Intellectual Snobbery</div>
+  </div>
+  <nav class="sidebar-nav">
+    <button class="nav-btn active" data-target="overview"><span class="nav-num">I</span>Overview</button>
+    <button class="nav-btn" data-target="lessons"><span class="nav-num">II</span>Lessons</button>
+    <button class="nav-btn" data-target="flashcards"><span class="nav-num">III</span>Flashcards</button>
+    <button class="nav-btn" data-target="mcq"><span class="nav-num">IV</span>MCQ</button>
+  </nav>
+  <div class="sidebar-foot">
+    Erasmus University Rotterdam<br/>
+    First-year International Psychology<br/>
+    Course companion · Theme 3
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- ============================ OVERVIEW ============================ -->
+  <section id="overview" class="section active">
+    <div class="hero">
+      <div class="hero-eyebrow">Theme 3 · Course Companion</div>
+      <h1 class="hero-title">How do social attitudes <em>influence</em> science?</h1>
+      <p class="hero-sub">Applied psychology, prejudice, and the long shadow of intellectual snobbery — from European universities to modern league tables.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><div class="num">15</div><div class="label">Lessons</div></div>
+      <div class="stat"><div class="num">32</div><div class="label">Flashcards</div></div>
+      <div class="stat"><div class="num">15</div><div class="label">Exam questions</div></div>
+      <div class="stat"><div class="num">6</div><div class="label">Founding figures</div></div>
+    </div>
+
+    <div class="big-picture">
+      <div class="big-picture-eyebrow">The thread that ties it all together</div>
+      <p>The chapter argues that the long-standing hierarchy of <em>pure science above applied science</em> is not a methodological fact. It is a <em>social attitude</em> — class-inherited from the European university tradition — that has shaped which research gets funded, which figures get remembered, and which people get included.</p>
+      <p>The same prejudice that pushed applied psychology to the margins also pushed women to the margins. Both were treated as less serious. The chapter asks you to recognise this pattern, to see how it persists in modern league tables and research assessment, and to evaluate research by intent rather than by inherited prestige.</p>
+    </div>
+
+    <div class="overview-section-title">All lessons</div>
+    <div class="lesson-grid" id="lessonGrid"></div>
+  </section>
+
+  <!-- ============================ LESSONS ============================ -->
+  <section id="lessons" class="section">
+    <div class="lesson-toolbar">
+      <div class="lesson-counter">Lesson <strong id="lessonNum">1</strong> of <strong>15</strong></div>
+      <div class="lesson-nav-btns">
+        <button class="lesson-nav-btn" id="prevLesson">← Prev</button>
+        <button class="lesson-nav-btn" id="nextLesson">Next →</button>
+      </div>
+    </div>
+    <div id="lessonContent"></div>
+  </section>
+
+  <!-- ============================ FLASHCARDS ============================ -->
+  <section id="flashcards" class="section">
+    <div class="hero" style="padding-bottom:1.5rem;margin-bottom:1.5rem">
+      <div class="hero-eyebrow">Section III · Flashcards</div>
+      <h1 class="hero-title" style="font-size:2.5rem">Quick <em>recall</em></h1>
+      <p class="hero-sub" style="font-size:1.1rem">Click any card to flip. Filter by topic, shuffle when you want to test yourself cold.</p>
+    </div>
+    <div class="fc-toolbar" id="fcFilters"></div>
+    <div class="fc-counter">Card <strong id="fcNum">1</strong> of <strong id="fcTotal">32</strong></div>
+    <div class="flashcard-stage">
+      <div class="flashcard" id="flashcard">
+        <div class="fc-face front">
+          <div class="fc-topic" id="fcTopic">Topic</div>
+          <div class="fc-front-text" id="fcFront">Term</div>
+          <div class="fc-hint">Click to flip</div>
+        </div>
+        <div class="fc-face back">
+          <div class="fc-topic" id="fcTopicBack">Topic</div>
+          <div class="fc-back-text" id="fcBack">Definition</div>
+          <div class="fc-hint">Click to flip back</div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-controls">
+      <button class="fc-btn secondary" id="fcPrev">← Previous</button>
+      <button class="fc-btn secondary" id="fcShuffle">Shuffle</button>
+      <button class="fc-btn secondary" id="fcReset">Reset</button>
+      <button class="fc-btn" id="fcNext">Next →</button>
+    </div>
+  </section>
+
+  <!-- ============================ MCQ ============================ -->
+  <section id="mcq" class="section">
+    <div class="hero" style="padding-bottom:1.5rem;margin-bottom:1.5rem">
+      <div class="hero-eyebrow">Section IV · Exam practice</div>
+      <h1 class="hero-title" style="font-size:2.5rem">Test <em>yourself</em></h1>
+      <p class="hero-sub" style="font-size:1.1rem">Fifteen exam-style questions with immediate feedback and worked explanations.</p>
+    </div>
+    <div id="mcqStage">
+      <div class="mcq-progress">
+        <div class="mcq-progress-text">Question <strong id="mcqNum">1</strong> of <strong>15</strong></div>
+        <div class="mcq-score">Score <strong id="mcqScore">0</strong> / 15</div>
+      </div>
+      <div class="mcq-progress-bar"><div class="mcq-progress-fill" id="mcqProgressFill" style="width:6.66%"></div></div>
+      <div class="mcq-question" id="mcqQuestion">Question</div>
+      <div class="mcq-options" id="mcqOptions"></div>
+      <div class="mcq-feedback" id="mcqFeedback">
+        <div class="mcq-feedback-label" id="mcqFeedbackLabel">Explanation</div>
+        <p id="mcqFeedbackText"></p>
+      </div>
+      <div class="mcq-controls">
+        <button class="fc-btn secondary" id="mcqRestart">Restart quiz</button>
+        <button class="fc-btn" id="mcqNext" disabled>Next question →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* ===========================================================================
+   LESSONS DATA — each lesson is one major concept, taught with one diagram
+   =========================================================================== */
+const lessons = [
+  {
+    id: 1, tag: "The thesis", branch: "Foundations",
+    title: "Pure vs Applied — a <em>class hierarchy</em>",
+    sub: "The chapter's central claim: the prestige gap between pure and applied science is inherited from European class structures, not from anything about scientific method.",
+    bullets: [
+      "<strong>Pure science</strong> = knowledge for its own sake, historically the work of the leisured aristocracy.",
+      "<strong>Applied science</strong> = knowledge put to use, historically the work of trades and professions.",
+      "The hierarchy is <strong>social, not methodological</strong> — the same experiment can be coded as either.",
+      "Modern equivalents: Russell Group above former polytechnics, Ivy League above community colleges.",
+      "The same prejudice that demoted applied psychology also <strong>demoted women</strong> in the discipline."
+    ],
+    hook: "If you remember one thing: the gap is inherited, not earned. Pure ≠ better, only older money.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96e"/>
+        </marker>
+      </defs>
+      <!-- pyramid -->
+      <polygon points="360,60 540,200 180,200" class="sv-box-gold"/>
+      <polygon points="180,200 540,200 600,320 120,320" class="sv-box"/>
+      <polygon points="120,320 600,320 660,420 60,420" fill="#15130f" stroke="#3d362d"/>
+      <text x="360" y="150" text-anchor="middle" class="sv-text-title">PURE</text>
+      <text x="360" y="172" text-anchor="middle" class="sv-text-small">knowledge for its own sake</text>
+      <text x="360" y="265" text-anchor="middle" class="sv-text-title" fill="#ebe6db">APPLIED</text>
+      <text x="360" y="287" text-anchor="middle" class="sv-text-small">knowledge put to use</text>
+      <text x="360" y="380" text-anchor="middle" class="sv-text" fill="#968f82">trades / crafts / industry</text>
+      <text x="360" y="400" text-anchor="middle" class="sv-text-small">manual labour</text>
+      <!-- left annotation -->
+      <text x="40" y="100" class="sv-text-italic">aristocracy</text>
+      <text x="40" y="118" class="sv-text-small">leisure to think</text>
+      <line x1="40" y1="130" x2="180" y2="160" class="sv-line"/>
+      <text x="40" y="265" class="sv-text-italic">professions</text>
+      <text x="40" y="283" class="sv-text-small">paid expertise</text>
+      <line x1="40" y1="295" x2="125" y2="295" class="sv-line"/>
+      <text x="40" y="395" class="sv-text-italic">labour</text>
+      <text x="40" y="413" class="sv-text-small">paid by the hour</text>
+      <line x1="40" y1="425" x2="80" y2="425" class="sv-line"/>
+      <!-- right side: vertical arrow showing prestige -->
+      <line x1="660" y1="420" x2="660" y2="80" class="sv-line-bright" marker-end="url(#ar1)"/>
+      <text x="680" y="250" class="sv-text-italic" transform="rotate(90, 680, 250)">prestige  ▲</text>
+      <!-- bottom note -->
+      <text x="360" y="460" text-anchor="middle" class="sv-text-italic">inherited, not earned</text>
+    </svg>`
+  },
+  {
+    id: 2, tag: "Geography of science", branch: "Foundations",
+    title: "Europe vs America — <em>two traditions</em>",
+    sub: "Why applied psychology was treated with suspicion in Germany and welcomed in the United States. The institutions sorted the science.",
+    bullets: [
+      "<strong>European universities</strong> kept pure science apart from useful work — applied went to <strong>technical institutes</strong> with lower status.",
+      "<strong>Wundt</strong> positioned psychology as a <em>pure</em> science precisely to win university acceptance.",
+      "<strong>America</strong> had no aristocratic tradition; its universities were <strong>utilitarian</strong> from the start.",
+      "American psychology embraced applied work without apology — James, Hall, Münsterberg, Witmer, Scott.",
+      "The split is geographical and historical, not scientific."
+    ],
+    hook: "Germany kept the lab pure. America put the lab to work. Same psychology, different culture.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Europe panel -->
+      <rect x="40" y="40" width="300" height="400" class="sv-box"/>
+      <text x="190" y="75" text-anchor="middle" class="sv-text-title">EUROPE</text>
+      <text x="190" y="95" text-anchor="middle" class="sv-text-small">two-tier system</text>
+      <rect x="70" y="125" width="240" height="80" class="sv-box-gold"/>
+      <text x="190" y="155" text-anchor="middle" class="sv-text-title" font-size="15">Universities</text>
+      <text x="190" y="180" text-anchor="middle" class="sv-text-small">PURE science only</text>
+      <text x="190" y="195" text-anchor="middle" class="sv-text-italic" font-size="12">(prestige)</text>
+      <line x1="190" y1="210" x2="190" y2="250" class="sv-line" stroke-dasharray="4 3"/>
+      <text x="200" y="235" class="sv-text-small" fill="#b56b6b">wall</text>
+      <rect x="70" y="255" width="240" height="80" class="sv-box"/>
+      <text x="190" y="285" text-anchor="middle" class="sv-text" font-size="15" fill="#968f82">Technical Institutes</text>
+      <text x="190" y="308" text-anchor="middle" class="sv-text-small">applied / trades</text>
+      <text x="190" y="323" text-anchor="middle" class="sv-text-italic" font-size="12" fill="#5e584e">(low status)</text>
+      <text x="190" y="380" text-anchor="middle" class="sv-text-italic" font-size="14">Wundt: "psychology is PURE"</text>
+      <text x="190" y="402" text-anchor="middle" class="sv-text-small">→ wins university entry</text>
+      <text x="190" y="422" text-anchor="middle" class="sv-text-small">applied is a separate world</text>
+
+      <!-- America panel -->
+      <rect x="380" y="40" width="300" height="400" class="sv-box"/>
+      <text x="530" y="75" text-anchor="middle" class="sv-text-title">AMERICA</text>
+      <text x="530" y="95" text-anchor="middle" class="sv-text-small">single utilitarian institution</text>
+      <rect x="410" y="125" width="240" height="210" class="sv-box-gold"/>
+      <text x="530" y="160" text-anchor="middle" class="sv-text-title" font-size="15">University</text>
+      <text x="530" y="185" text-anchor="middle" class="sv-text-small">PURE + APPLIED</text>
+      <text x="530" y="205" text-anchor="middle" class="sv-text-small">no class barrier</text>
+      <line x1="430" y1="225" x2="630" y2="225" class="sv-line"/>
+      <text x="530" y="250" text-anchor="middle" class="sv-text" font-size="13">James · Hall</text>
+      <text x="530" y="270" text-anchor="middle" class="sv-text" font-size="13">Münsterberg · Witmer</text>
+      <text x="530" y="290" text-anchor="middle" class="sv-text" font-size="13">Scott</text>
+      <text x="530" y="320" text-anchor="middle" class="sv-text-italic" font-size="12">all under one roof</text>
+      <text x="530" y="380" text-anchor="middle" class="sv-text-italic" font-size="14">applied accepted from day one</text>
+      <text x="530" y="402" text-anchor="middle" class="sv-text-small">no aristocratic tradition</text>
+      <text x="530" y="422" text-anchor="middle" class="sv-text-small">→ pragmatism is native</text>
+    </svg>`
+  },
+  {
+    id: 3, tag: "Schools of thought", branch: "Foundations",
+    title: "Structuralism vs <em>Functionalism</em>",
+    sub: "Two ways to study the mind. Structuralism asks what consciousness is made of. Functionalism asks what it is for.",
+    bullets: [
+      "<strong>Structuralism</strong> (Wundt, Titchener): introspection, atoms of consciousness, the mind as a static object to dissect.",
+      "<strong>Functionalism</strong> (James): observation and experiment, what consciousness <em>does</em>, the mind as a dynamic stream.",
+      "Functionalism rests on <strong>pragmatism</strong> (Peirce) and <strong>Darwin</strong> — mental processes evolved because they help us adapt.",
+      "Functionalism is the parent of <strong>applied psychology</strong>: if mind is for adapting, study it where adaptation happens.",
+      "Structuralism dies out. Functionalism is absorbed into behaviourism and modern psychology."
+    ],
+    hook: "Structuralism dissects the clock. Functionalism asks what the clock is for.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Structuralism -->
+      <rect x="30" y="40" width="320" height="400" class="sv-box"/>
+      <text x="190" y="75" text-anchor="middle" class="sv-text-title">STRUCTURALISM</text>
+      <text x="190" y="95" text-anchor="middle" class="sv-text-small">Wundt · Titchener</text>
+      <line x1="60" y1="110" x2="320" y2="110" class="sv-line"/>
+      <text x="60" y="140" class="sv-text-italic">Question</text>
+      <text x="60" y="160" class="sv-text" font-size="14">What IS consciousness?</text>
+      <text x="60" y="200" class="sv-text-italic">Method</text>
+      <text x="60" y="220" class="sv-text" font-size="14">Introspection</text>
+      <text x="60" y="240" class="sv-text-small">trained subjects report</text>
+      <text x="60" y="280" class="sv-text-italic">Image of mind</text>
+      <!-- atoms -->
+      <circle cx="100" cy="320" r="8" fill="#c9a96e"/>
+      <circle cx="130" cy="335" r="8" fill="#c9a96e"/>
+      <circle cx="160" cy="320" r="8" fill="#c9a96e"/>
+      <circle cx="190" cy="340" r="8" fill="#c9a96e"/>
+      <circle cx="220" cy="320" r="8" fill="#c9a96e"/>
+      <circle cx="250" cy="335" r="8" fill="#c9a96e"/>
+      <text x="190" y="375" text-anchor="middle" class="sv-text-small">elements / atoms</text>
+      <text x="60" y="410" class="sv-text-italic">Status</text>
+      <text x="60" y="428" class="sv-text-small" fill="#b56b6b">extinct as a school</text>
+
+      <!-- Functionalism -->
+      <rect x="370" y="40" width="320" height="400" class="sv-box-gold"/>
+      <text x="530" y="75" text-anchor="middle" class="sv-text-title">FUNCTIONALISM</text>
+      <text x="530" y="95" text-anchor="middle" class="sv-text-small">William James</text>
+      <line x1="400" y1="110" x2="660" y2="110" class="sv-line"/>
+      <text x="400" y="140" class="sv-text-italic">Question</text>
+      <text x="400" y="160" class="sv-text" font-size="14">What does it DO?</text>
+      <text x="400" y="200" class="sv-text-italic">Method</text>
+      <text x="400" y="220" class="sv-text" font-size="14">Observation + experiment</text>
+      <text x="400" y="240" class="sv-text-small">behaviour in context</text>
+      <text x="400" y="280" class="sv-text-italic">Image of mind</text>
+      <!-- stream -->
+      <path d="M 400 325 Q 440 305 480 325 T 560 325 T 640 325" fill="none" stroke="#c9a96e" stroke-width="3"/>
+      <path d="M 400 340 Q 440 320 480 340 T 560 340 T 640 340" fill="none" stroke="#c9a96e" stroke-width="2" opacity="0.6"/>
+      <text x="530" y="375" text-anchor="middle" class="sv-text-small">stream of consciousness</text>
+      <text x="400" y="410" class="sv-text-italic">Status</text>
+      <text x="400" y="428" class="sv-text-small" fill="#7ea870">absorbed → modern psychology</text>
+    </svg>`
+  },
+  {
+    id: 4, tag: "Pure-applied relationship", branch: "Foundations",
+    title: "Brick wall vs <em>coalescence</em>",
+    sub: "Two competing pictures of how pure and applied science relate. The chapter argues the wall is a fiction.",
+    bullets: [
+      "<strong>Brick wall hypothesis</strong>: pure and applied are sealed-off worlds, knowledge cannot cross.",
+      "<strong>Coalescence hypothesis</strong>: pure and applied blend at the edges, ideas flow both ways.",
+      "Real science behaves like coalescence — applied problems generate pure questions, and theory generates application.",
+      "Lewin: <em>\"there is nothing so practical as a good theory.\"</em>",
+      "The brick wall is a <strong>social construction</strong> that protects prestige hierarchies, not a description of how science works."
+    ],
+    hook: "The wall is in the budget meeting, not in the laboratory.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Brick wall -->
+      <text x="180" y="40" text-anchor="middle" class="sv-text-title">Brick Wall</text>
+      <text x="180" y="60" text-anchor="middle" class="sv-text-small">the prejudiced view</text>
+      <rect x="40" y="90" width="120" height="280" class="sv-box-gold"/>
+      <text x="100" y="125" text-anchor="middle" class="sv-text-title" font-size="15">PURE</text>
+      <text x="100" y="240" text-anchor="middle" class="sv-text-italic" font-size="12">no transfer</text>
+      <!-- bricks -->
+      <g stroke="#b56b6b" fill="#1a1814" stroke-width="1.5">
+        <rect x="170" y="100" width="40" height="20"/>
+        <rect x="170" y="120" width="40" height="20"/>
+        <rect x="170" y="140" width="40" height="20"/>
+        <rect x="170" y="160" width="40" height="20"/>
+        <rect x="170" y="180" width="40" height="20"/>
+        <rect x="170" y="200" width="40" height="20"/>
+        <rect x="170" y="220" width="40" height="20"/>
+        <rect x="170" y="240" width="40" height="20"/>
+        <rect x="170" y="260" width="40" height="20"/>
+        <rect x="170" y="280" width="40" height="20"/>
+        <rect x="170" y="300" width="40" height="20"/>
+        <rect x="170" y="320" width="40" height="20"/>
+        <rect x="170" y="340" width="40" height="20"/>
+      </g>
+      <rect x="220" y="90" width="120" height="280" class="sv-box"/>
+      <text x="280" y="125" text-anchor="middle" class="sv-text-title" font-size="15" fill="#968f82">APPLIED</text>
+      <text x="280" y="240" text-anchor="middle" class="sv-text-italic" font-size="12">isolated</text>
+      <text x="180" y="410" text-anchor="middle" class="sv-text-small">"ne'er the twain shall meet"</text>
+      <text x="180" y="430" text-anchor="middle" class="sv-text-small" fill="#b56b6b">— socially convenient fiction</text>
+
+      <!-- Coalescence -->
+      <text x="540" y="40" text-anchor="middle" class="sv-text-title">Coalescence</text>
+      <text x="540" y="60" text-anchor="middle" class="sv-text-small">how science actually works</text>
+      <defs>
+        <linearGradient id="grad1" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stop-color="#c9a96e" stop-opacity="0.3"/>
+          <stop offset="0.5" stop-color="#c9a96e" stop-opacity="0.18"/>
+          <stop offset="1" stop-color="#c9a96e" stop-opacity="0.05"/>
+        </linearGradient>
+        <linearGradient id="grad2" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stop-color="#c9a96e" stop-opacity="0.05"/>
+          <stop offset="0.5" stop-color="#c9a96e" stop-opacity="0.18"/>
+          <stop offset="1" stop-color="#c9a96e" stop-opacity="0.3"/>
+        </linearGradient>
+        <marker id="arBoth" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96e"/>
+        </marker>
+      </defs>
+      <rect x="400" y="90" width="140" height="280" fill="url(#grad1)" stroke="#c9a96e" stroke-width="1.5"/>
+      <rect x="540" y="90" width="140" height="280" fill="url(#grad2)" stroke="#c9a96e" stroke-width="1.5"/>
+      <text x="450" y="130" class="sv-text-title" font-size="15">PURE</text>
+      <text x="595" y="130" class="sv-text-title" font-size="15">APPLIED</text>
+      <line x1="540" y1="220" x2="540" y2="350" stroke="#c9a96e" stroke-dasharray="3 3"/>
+      <line x1="430" y1="200" x2="650" y2="200" class="sv-line-bright" marker-end="url(#arBoth)" marker-start="url(#arBoth)"/>
+      <text x="540" y="190" text-anchor="middle" class="sv-text-italic" font-size="12">questions flow</text>
+      <line x1="430" y1="280" x2="650" y2="280" class="sv-line-bright" marker-end="url(#arBoth)" marker-start="url(#arBoth)"/>
+      <text x="540" y="305" text-anchor="middle" class="sv-text-italic" font-size="12">findings flow</text>
+      <text x="540" y="410" text-anchor="middle" class="sv-text-italic" font-size="13">"nothing so practical as a good theory"</text>
+      <text x="540" y="430" text-anchor="middle" class="sv-text-small">— Kurt Lewin</text>
+    </svg>`
+  },
+  {
+    id: 5, tag: "William James", branch: "Founding figures",
+    title: "James — <em>Talks to Teachers</em>",
+    sub: "James gave the field its first applied bestseller. He told teachers their job was to install habits on top of native reactions.",
+    bullets: [
+      "<strong>Native reactions</strong>: innate, automatic responses we are born with (fear, curiosity, attention).",
+      "<strong>Habits</strong>: learned patterns built by repetition, sitting on top of native reactions.",
+      "Education = <em>shaping habits</em> while the native reactions are still pliable.",
+      "Borrowed from <strong>Herbart</strong>: learning is association — new ideas attach to existing ones.",
+      "<em>Talks to Teachers</em> (1899) followed <em>Principles of Psychology</em> (1890). Theory then practice."
+    ],
+    hook: "Native reactions are the soil. Habits are the crop. The teacher is the gardener.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96e"/>
+        </marker>
+      </defs>
+      <!-- Layered diagram -->
+      <text x="360" y="40" text-anchor="middle" class="sv-text-title">The Layered Mind (James)</text>
+
+      <!-- Native reactions base -->
+      <rect x="100" y="320" width="520" height="80" class="sv-box-gold"/>
+      <text x="360" y="350" text-anchor="middle" class="sv-text-title" font-size="15">NATIVE REACTIONS</text>
+      <text x="360" y="372" text-anchor="middle" class="sv-text-small">innate · automatic · evolved</text>
+      <text x="360" y="390" text-anchor="middle" class="sv-text-italic" font-size="12">fear · curiosity · attention · imitation</text>
+
+      <!-- Arrow up -->
+      <line x1="360" y1="320" x2="360" y2="270" class="sv-line-bright" marker-end="url(#ar2)"/>
+      <text x="380" y="298" class="sv-text-italic" font-size="12">repetition + association</text>
+
+      <!-- Habits middle -->
+      <rect x="160" y="200" width="400" height="70" class="sv-box"/>
+      <text x="360" y="230" text-anchor="middle" class="sv-text-title" font-size="15">HABITS</text>
+      <text x="360" y="252" text-anchor="middle" class="sv-text-small">learned · automated · efficient</text>
+
+      <!-- Arrow up -->
+      <line x1="360" y1="200" x2="360" y2="160" class="sv-line-bright" marker-end="url(#ar2)"/>
+
+      <!-- Adapted behaviour top -->
+      <rect x="220" y="100" width="280" height="60" class="sv-box"/>
+      <text x="360" y="128" text-anchor="middle" class="sv-text-title" font-size="14" fill="#ebe6db">Adapted behaviour</text>
+      <text x="360" y="148" text-anchor="middle" class="sv-text-small">the educated person</text>
+
+      <!-- Side label: Herbart -->
+      <text x="40" y="235" class="sv-text-italic">Herbart</text>
+      <text x="40" y="253" class="sv-text-small">association</text>
+      <line x1="40" y1="265" x2="160" y2="235" class="sv-line"/>
+
+      <!-- Side label: teacher -->
+      <text x="600" y="350" class="sv-text-italic">teacher</text>
+      <text x="600" y="368" class="sv-text-small">shapes habits</text>
+      <line x1="600" y1="375" x2="560" y2="370" class="sv-line"/>
+
+      <!-- Bottom timeline -->
+      <text x="100" y="445" class="sv-text-small">1890</text>
+      <text x="125" y="445" class="sv-text" font-size="12">Principles of Psychology</text>
+      <text x="500" y="445" class="sv-text-small">1899</text>
+      <text x="525" y="445" class="sv-text" font-size="12">Talks to Teachers</text>
+      <line x1="100" y1="455" x2="620" y2="455" class="sv-line"/>
+    </svg>`
+  },
+  {
+    id: 6, tag: "Stanley Hall", branch: "Founding figures",
+    title: "Stanley Hall — <em>founder</em> of the discipline",
+    sub: "Hall built American psychology as an institution. He also invented adolescence as a category — and used it to argue for sex-segregated schooling.",
+    bullets: [
+      "First American PhD in psychology (1878). Studied with Wundt, but his work is thoroughly American.",
+      "Founded the <strong>American Psychological Association</strong> in 1892.",
+      "<em>Adolescence</em> (1904) — defined the life stage as a period of <strong>storm and stress</strong>.",
+      "Used adolescence to argue for <strong>sex-segregated schooling</strong> — boys and girls develop differently.",
+      "Reminder: <em>founders are not always heroes</em>. Hall's institution-building came packaged with prejudice."
+    ],
+    hook: "Hall built the APA's house. He also locked some doors on the way in.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Timeline backbone -->
+      <line x1="60" y1="240" x2="660" y2="240" class="sv-line-bright"/>
+
+      <!-- Markers -->
+      <circle cx="120" cy="240" r="6" fill="#c9a96e"/>
+      <text x="120" y="225" text-anchor="middle" class="sv-text-italic" font-size="13">1846</text>
+      <text x="120" y="270" text-anchor="middle" class="sv-text-small">born</text>
+
+      <circle cx="240" cy="240" r="8" fill="#c9a96e"/>
+      <text x="240" y="220" text-anchor="middle" class="sv-text-italic" font-size="13">1878</text>
+      <text x="240" y="278" text-anchor="middle" class="sv-text" font-size="11">first US</text>
+      <text x="240" y="292" text-anchor="middle" class="sv-text" font-size="11">PhD in psych</text>
+
+      <circle cx="380" cy="240" r="10" fill="#c9a96e"/>
+      <text x="380" y="218" text-anchor="middle" class="sv-text-italic" font-size="13">1892</text>
+      <text x="380" y="280" text-anchor="middle" class="sv-text" font-size="12" fill="#c9a96e">founds APA</text>
+      <text x="380" y="296" text-anchor="middle" class="sv-text-small">first president</text>
+
+      <circle cx="510" cy="240" r="10" fill="#c9a96e"/>
+      <text x="510" y="218" text-anchor="middle" class="sv-text-italic" font-size="13">1904</text>
+      <text x="510" y="280" text-anchor="middle" class="sv-text" font-size="12" fill="#c9a96e">Adolescence</text>
+      <text x="510" y="296" text-anchor="middle" class="sv-text-small">"storm &amp; stress"</text>
+
+      <circle cx="620" cy="240" r="6" fill="#c9a96e"/>
+      <text x="620" y="225" text-anchor="middle" class="sv-text-italic" font-size="13">1924</text>
+      <text x="620" y="270" text-anchor="middle" class="sv-text-small">died</text>
+
+      <!-- Above timeline: contributions -->
+      <rect x="320" y="60" width="280" height="100" class="sv-box-gold"/>
+      <text x="460" y="90" text-anchor="middle" class="sv-text-title" font-size="14">Builds the institution</text>
+      <line x1="380" y1="105" x2="540" y2="105" class="sv-line"/>
+      <text x="460" y="125" text-anchor="middle" class="sv-text" font-size="12">APA · journals · graduate programs</text>
+      <text x="460" y="145" text-anchor="middle" class="sv-text-small">+ early child study movement</text>
+      <line x1="380" y1="160" x2="380" y2="230" class="sv-line"/>
+
+      <!-- Below timeline: prejudice -->
+      <rect x="380" y="340" width="240" height="100" stroke="#b56b6b" fill="rgba(181,107,107,0.06)" stroke-width="1.5"/>
+      <text x="500" y="370" text-anchor="middle" class="sv-text-title" font-size="14" fill="#b56b6b">The shadow side</text>
+      <line x1="430" y1="385" x2="570" y2="385" stroke="#b56b6b" stroke-width="1"/>
+      <text x="500" y="405" text-anchor="middle" class="sv-text" font-size="12">sex-segregated schooling</text>
+      <text x="500" y="423" text-anchor="middle" class="sv-text-small">"boys/girls develop differently"</text>
+      <line x1="510" y1="250" x2="510" y2="340" class="sv-line" stroke-dasharray="3 3"/>
+
+      <!-- Title -->
+      <text x="60" y="40" class="sv-text-title">G. Stanley Hall (1846–1924)</text>
+      <text x="60" y="60" class="sv-text-small">institution-builder + ideologue</text>
+    </svg>`
+  },
+  {
+    id: 7, tag: "Hugo Münsterberg", branch: "Founding figures",
+    title: "Münsterberg — <em>father</em> of applied psychology",
+    sub: "Münsterberg gave applied psychology its definition: a field is applied not by its method but by its intent. From this he opened forensic, industrial, and clinical sub-fields.",
+    bullets: [
+      "<strong>Intent-based definition</strong>: applied = research aimed at a real-world problem. The lab method is irrelevant.",
+      "Same experiment can be pure (curiosity-driven) or applied (problem-driven). The label follows the goal.",
+      "<em>On the Witness Stand</em> (1908) — founds <strong>forensic psychology</strong>.",
+      "Founds <strong>industrial psychology</strong> with personnel selection and workplace efficiency studies.",
+      "Founds <strong>clinical psychology</strong> alongside Witmer; treats psychotherapy as applied science."
+    ],
+    hook: "Method ≠ status. Intent does. Münsterberg's one move opened three sub-fields.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Center node -->
+      <circle cx="360" cy="240" r="80" class="sv-box-gold"/>
+      <text x="360" y="230" text-anchor="middle" class="sv-text-title" font-size="16">MÜNSTERBERG</text>
+      <text x="360" y="252" text-anchor="middle" class="sv-text-small">1863–1916</text>
+      <text x="360" y="270" text-anchor="middle" class="sv-text-italic" font-size="12">father of applied</text>
+
+      <!-- Three branches -->
+      <line x1="320" y1="180" x2="170" y2="100" class="sv-line-bright"/>
+      <line x1="400" y1="180" x2="550" y2="100" class="sv-line-bright"/>
+      <line x1="360" y1="320" x2="360" y2="400" class="sv-line-bright"/>
+
+      <!-- Forensic -->
+      <rect x="40" y="60" width="260" height="80" class="sv-box"/>
+      <text x="170" y="88" text-anchor="middle" class="sv-text-title" font-size="14">FORENSIC</text>
+      <line x1="100" y1="98" x2="240" y2="98" class="sv-line"/>
+      <text x="170" y="115" text-anchor="middle" class="sv-text" font-size="12">witness reliability</text>
+      <text x="170" y="132" text-anchor="middle" class="sv-text-small">On the Witness Stand · 1908</text>
+
+      <!-- Industrial -->
+      <rect x="420" y="60" width="260" height="80" class="sv-box"/>
+      <text x="550" y="88" text-anchor="middle" class="sv-text-title" font-size="14">INDUSTRIAL</text>
+      <line x1="480" y1="98" x2="620" y2="98" class="sv-line"/>
+      <text x="550" y="115" text-anchor="middle" class="sv-text" font-size="12">personnel selection</text>
+      <text x="550" y="132" text-anchor="middle" class="sv-text-small">workplace efficiency</text>
+
+      <!-- Clinical -->
+      <rect x="230" y="400" width="260" height="60" class="sv-box"/>
+      <text x="360" y="425" text-anchor="middle" class="sv-text-title" font-size="14">CLINICAL</text>
+      <line x1="290" y1="435" x2="430" y2="435" class="sv-line"/>
+      <text x="360" y="452" text-anchor="middle" class="sv-text-small">co-founder · with Witmer</text>
+
+      <!-- Definition box -->
+      <rect x="40" y="350" width="180" height="100" stroke="#c9a96e" fill="rgba(201,169,110,0.06)" stroke-width="1.5"/>
+      <text x="130" y="375" text-anchor="middle" class="sv-text-italic" font-size="12">key principle</text>
+      <line x1="80" y1="385" x2="180" y2="385" class="sv-line"/>
+      <text x="130" y="405" text-anchor="middle" class="sv-text" font-size="12">applied =</text>
+      <text x="130" y="423" text-anchor="middle" class="sv-text-italic" font-size="13">defined by INTENT</text>
+      <text x="130" y="442" text-anchor="middle" class="sv-text-small">not method</text>
+
+      <text x="500" y="370" class="sv-text-italic" font-size="12">"the same lab</text>
+      <text x="500" y="390" class="sv-text-italic" font-size="12">can serve any goal"</text>
+    </svg>`
+  },
+  {
+    id: 8, tag: "Forensic psychology", branch: "Sub-fields",
+    title: "The <em>three principles</em> of forensic psychology",
+    sub: "Münsterberg laid out three things courts could not safely assume about witnesses. All three remain core to forensic psychology today.",
+    bullets: [
+      "<strong>Memory is reconstructive</strong> — not a recording. Each retrieval rebuilds the trace and can introduce errors.",
+      "<strong>Witnesses are suggestible</strong> — leading questions and post-event information change what a witness reports.",
+      "<strong>Lie detection is unreliable</strong> — physiological signals correlate weakly with deception; no clean machine exists.",
+      "Demonstrated experimentally — staged classroom incidents, then asking students what happened.",
+      "Modern eyewitness research (Loftus and others) builds directly on these principles."
+    ],
+    hook: "Memory ≠ recording · Witnesses ≠ tape recorders · Polygraph ≠ truth machine.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <text x="360" y="40" text-anchor="middle" class="sv-text-title">Three Pillars of Forensic Caution</text>
+      <text x="360" y="60" text-anchor="middle" class="sv-text-small">Münsterberg · On the Witness Stand · 1908</text>
+
+      <!-- Pillar 1 -->
+      <rect x="60" y="100" width="170" height="280" class="sv-box-gold"/>
+      <text x="145" y="130" text-anchor="middle" class="sv-text-title" font-size="14">1. MEMORY</text>
+      <text x="145" y="150" text-anchor="middle" class="sv-text-italic" font-size="12">is reconstructive</text>
+      <line x1="80" y1="165" x2="210" y2="165" class="sv-line"/>
+      <!-- icon: brain dots -->
+      <circle cx="145" cy="210" r="35" fill="none" stroke="#c9a96e" stroke-width="1.5"/>
+      <circle cx="135" cy="200" r="3" fill="#c9a96e"/>
+      <circle cx="155" cy="205" r="3" fill="#c9a96e"/>
+      <circle cx="145" cy="220" r="3" fill="#c9a96e"/>
+      <circle cx="160" cy="225" r="3" fill="#c9a96e"/>
+      <text x="145" y="285" text-anchor="middle" class="sv-text" font-size="12">Each recall</text>
+      <text x="145" y="303" text-anchor="middle" class="sv-text" font-size="12">rebuilds the trace</text>
+      <text x="145" y="335" text-anchor="middle" class="sv-text-small">→ errors creep in</text>
+      <text x="145" y="355" text-anchor="middle" class="sv-text-small">on every retrieval</text>
+
+      <!-- Pillar 2 -->
+      <rect x="275" y="100" width="170" height="280" class="sv-box-gold"/>
+      <text x="360" y="130" text-anchor="middle" class="sv-text-title" font-size="14">2. SUGGESTION</text>
+      <text x="360" y="150" text-anchor="middle" class="sv-text-italic" font-size="12">shapes recall</text>
+      <line x1="295" y1="165" x2="425" y2="165" class="sv-line"/>
+      <!-- icon: arrow into circle -->
+      <line x1="295" y1="220" x2="335" y2="220" class="sv-line-bright" marker-end="url(#arSug)"/>
+      <defs>
+        <marker id="arSug" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96e"/>
+        </marker>
+      </defs>
+      <circle cx="370" cy="220" r="22" fill="none" stroke="#c9a96e" stroke-width="1.5"/>
+      <text x="370" y="225" text-anchor="middle" class="sv-text-small">witness</text>
+      <text x="360" y="285" text-anchor="middle" class="sv-text" font-size="12">Leading questions</text>
+      <text x="360" y="303" text-anchor="middle" class="sv-text" font-size="12">alter the memory</text>
+      <text x="360" y="335" text-anchor="middle" class="sv-text-small">→ false memory forms</text>
+      <text x="360" y="355" text-anchor="middle" class="sv-text-small">witness believes it true</text>
+
+      <!-- Pillar 3 -->
+      <rect x="490" y="100" width="170" height="280" class="sv-box-gold"/>
+      <text x="575" y="130" text-anchor="middle" class="sv-text-title" font-size="14">3. LIE DETECTION</text>
+      <text x="575" y="150" text-anchor="middle" class="sv-text-italic" font-size="12">is unreliable</text>
+      <line x1="510" y1="165" x2="640" y2="165" class="sv-line"/>
+      <!-- icon: wavy line (polygraph) -->
+      <path d="M 515 220 Q 530 200 545 220 T 575 220 T 605 220 T 635 220" fill="none" stroke="#c9a96e" stroke-width="2"/>
+      <text x="575" y="245" text-anchor="middle" class="sv-text-small">heart rate · sweat</text>
+      <text x="575" y="285" text-anchor="middle" class="sv-text" font-size="12">Stress ≠ guilt</text>
+      <text x="575" y="303" text-anchor="middle" class="sv-text" font-size="12">Calm ≠ truth</text>
+      <text x="575" y="335" text-anchor="middle" class="sv-text-small">→ no clean signal</text>
+      <text x="575" y="355" text-anchor="middle" class="sv-text-small">for deception</text>
+
+      <text x="360" y="430" text-anchor="middle" class="sv-text-italic">Modern eyewitness research (Loftus) builds on all three.</text>
+    </svg>`
+  },
+  {
+    id: 9, tag: "Clinical psychology", branch: "Sub-fields",
+    title: "Witmer — clinics, not <em>asylums</em>",
+    sub: "Witmer broke from the moral-treatment tradition. Instead of treating madness in asylums, he treated learning problems in clinics. He coined the term clinical psychology.",
+    bullets: [
+      "Opened the first <strong>psychological clinic</strong> at the University of Pennsylvania in 1896.",
+      "Coined the term <strong>clinical psychology</strong>.",
+      "<strong>Environmentalist</strong>: behaviour problems are about the environment, not the soul or the constitution.",
+      "Contrast with <strong>moral treatment</strong> (Tuke, Dix) — kindness in asylums, but still institutional.",
+      "Witmer's clinic worked with <strong>schoolchildren</strong>, not the institutionalised — psychology in the community."
+    ],
+    hook: "Tuke and Dix made the asylum kinder. Witmer left the asylum behind.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Two-track comparison -->
+      <text x="360" y="40" text-anchor="middle" class="sv-text-title">Two paths for treating mental difficulty</text>
+
+      <!-- Moral treatment track -->
+      <rect x="40" y="80" width="300" height="350" class="sv-box"/>
+      <text x="190" y="115" text-anchor="middle" class="sv-text-title" font-size="14">MORAL TREATMENT</text>
+      <text x="190" y="135" text-anchor="middle" class="sv-text-small">Tuke (UK) · Dix (US)</text>
+      <line x1="70" y1="148" x2="310" y2="148" class="sv-line"/>
+      <text x="60" y="180" class="sv-text-italic" font-size="12">Setting</text>
+      <text x="60" y="200" class="sv-text" font-size="13">Asylum / institution</text>
+      <text x="60" y="235" class="sv-text-italic" font-size="12">Approach</text>
+      <text x="60" y="255" class="sv-text" font-size="13">Kindness, routine, dignity</text>
+      <text x="60" y="290" class="sv-text-italic" font-size="12">Population</text>
+      <text x="60" y="310" class="sv-text" font-size="13">The "insane"</text>
+      <text x="60" y="345" class="sv-text-italic" font-size="12">Underlying view</text>
+      <text x="60" y="365" class="sv-text" font-size="13">Madness as moral disorder</text>
+      <text x="60" y="383" class="sv-text-small">to be soothed and managed</text>
+      <text x="190" y="415" text-anchor="middle" class="sv-text-small" fill="#968f82">19th century legacy</text>
+
+      <!-- Witmer track -->
+      <rect x="380" y="80" width="300" height="350" class="sv-box-gold"/>
+      <text x="530" y="115" text-anchor="middle" class="sv-text-title" font-size="14">WITMER'S CLINIC</text>
+      <text x="530" y="135" text-anchor="middle" class="sv-text-small">Lightner Witmer · 1896</text>
+      <line x1="410" y1="148" x2="650" y2="148" class="sv-line"/>
+      <text x="400" y="180" class="sv-text-italic" font-size="12">Setting</text>
+      <text x="400" y="200" class="sv-text" font-size="13">University clinic · outpatient</text>
+      <text x="400" y="235" class="sv-text-italic" font-size="12">Approach</text>
+      <text x="400" y="255" class="sv-text" font-size="13">Assessment + tailored teaching</text>
+      <text x="400" y="290" class="sv-text-italic" font-size="12">Population</text>
+      <text x="400" y="310" class="sv-text" font-size="13">Schoolchildren with</text>
+      <text x="400" y="328" class="sv-text" font-size="13">learning difficulties</text>
+      <text x="400" y="358" class="sv-text-italic" font-size="12">Underlying view</text>
+      <text x="400" y="378" class="sv-text" font-size="13">Difficulty as environmental</text>
+      <text x="400" y="396" class="sv-text-small">change conditions, not soul</text>
+      <text x="530" y="420" text-anchor="middle" class="sv-text-italic" font-size="13" fill="#c9a96e">→ clinical psychology is born</text>
+    </svg>`
+  },
+  {
+    id: 10, tag: "Industrial psychology", branch: "Sub-fields",
+    title: "Scott — psychology at <em>work</em>",
+    sub: "Walter Dill Scott applied psychology to two workplace problems: how to sell to people, and how to choose people. Both founded modern fields.",
+    bullets: [
+      "<strong>Advertising psychology</strong>: how attention, suggestion, and association sell products.",
+      "<strong>Personnel selection</strong>: psychological testing to match people to jobs.",
+      "Worked with the US Army during WWI — large-scale aptitude testing for soldier placement.",
+      "Established <strong>industrial / organisational</strong> psychology as a legitimate sub-field.",
+      "Same intellectual move as Münsterberg: take lab methods, apply them to a real-world target."
+    ],
+    hook: "Two questions. How do you sell to a mind? How do you sort minds for jobs? Scott built a field on each.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <text x="360" y="40" text-anchor="middle" class="sv-text-title">Walter Dill Scott · 1869–1955</text>
+      <text x="360" y="60" text-anchor="middle" class="sv-text-small">two foundations of industrial / organisational psychology</text>
+
+      <!-- Vertical divider -->
+      <line x1="360" y1="100" x2="360" y2="420" stroke="#3d362d" stroke-dasharray="3 4"/>
+
+      <!-- Left: Advertising -->
+      <text x="180" y="120" text-anchor="middle" class="sv-text-title" font-size="15">ADVERTISING</text>
+      <text x="180" y="140" text-anchor="middle" class="sv-text-italic" font-size="12">selling TO the mind</text>
+
+      <!-- Stack: stimulus → mind → action -->
+      <rect x="80" y="170" width="200" height="50" class="sv-box-gold"/>
+      <text x="180" y="195" text-anchor="middle" class="sv-text" font-size="13">advertisement</text>
+      <text x="180" y="212" text-anchor="middle" class="sv-text-small">visual · verbal · emotive</text>
+      <line x1="180" y1="225" x2="180" y2="255" class="sv-line-bright" marker-end="url(#ar3)"/>
+      <defs>
+        <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96e"/>
+        </marker>
+      </defs>
+      <rect x="80" y="260" width="200" height="50" class="sv-box"/>
+      <text x="180" y="285" text-anchor="middle" class="sv-text" font-size="13">attention · suggestion</text>
+      <text x="180" y="302" text-anchor="middle" class="sv-text-small">association forms</text>
+      <line x1="180" y1="315" x2="180" y2="345" class="sv-line-bright" marker-end="url(#ar3)"/>
+      <rect x="80" y="350" width="200" height="50" class="sv-box"/>
+      <text x="180" y="375" text-anchor="middle" class="sv-text" font-size="13">purchase</text>
+      <text x="180" y="392" text-anchor="middle" class="sv-text-small">behavioural outcome</text>
+
+      <!-- Right: Selection -->
+      <text x="540" y="120" text-anchor="middle" class="sv-text-title" font-size="15">SELECTION</text>
+      <text x="540" y="140" text-anchor="middle" class="sv-text-italic" font-size="12">sorting people for roles</text>
+
+      <!-- Stack: people → tests → matched roles -->
+      <g>
+        <circle cx="450" cy="195" r="10" class="sv-box"/>
+        <circle cx="480" cy="195" r="10" class="sv-box"/>
+        <circle cx="510" cy="195" r="10" class="sv-box"/>
+        <circle cx="540" cy="195" r="10" class="sv-box"/>
+        <circle cx="570" cy="195" r="10" class="sv-box"/>
+        <circle cx="600" cy="195" r="10" class="sv-box"/>
+        <circle cx="630" cy="195" r="10" class="sv-box"/>
+      </g>
+      <text x="540" y="222" text-anchor="middle" class="sv-text-small">candidates</text>
+      <line x1="540" y1="232" x2="540" y2="260" class="sv-line-bright" marker-end="url(#ar3)"/>
+      <rect x="440" y="265" width="200" height="50" class="sv-box-gold"/>
+      <text x="540" y="290" text-anchor="middle" class="sv-text" font-size="13">aptitude tests</text>
+      <text x="540" y="307" text-anchor="middle" class="sv-text-small">measure fit to role</text>
+      <line x1="540" y1="320" x2="540" y2="350" class="sv-line-bright" marker-end="url(#ar3)"/>
+      <g>
+        <rect x="440" y="355" width="55" height="40" class="sv-box"/>
+        <text x="467" y="378" text-anchor="middle" class="sv-text-small">role A</text>
+        <rect x="510" y="355" width="55" height="40" class="sv-box"/>
+        <text x="537" y="378" text-anchor="middle" class="sv-text-small">role B</text>
+        <rect x="580" y="355" width="55" height="40" class="sv-box"/>
+        <text x="607" y="378" text-anchor="middle" class="sv-text-small">role C</text>
+      </g>
+      <text x="540" y="412" text-anchor="middle" class="sv-text-small">matched placement</text>
+
+      <text x="360" y="455" text-anchor="middle" class="sv-text-italic" font-size="12">→ WWI army testing → modern HR psychology</text>
+    </svg>`
+  },
+  {
+    id: 11, tag: "Intelligence", branch: "Sub-fields",
+    title: "Binet vs Spearman — <em>many</em> minds or one?",
+    sub: "Binet built the first practical intelligence test on the assumption of multiple faculties. Spearman later argued for a single underlying factor. Modern psychology still argues over which is right.",
+    bullets: [
+      "<strong>Binet (1905)</strong>: <em>Binet–Simon test</em>. Practical purpose — identify children needing extra help.",
+      "Binet thought intelligence was made of <strong>multiple mental faculties</strong> — memory, judgement, attention, vocabulary.",
+      "Binet <strong>rejected</strong> the idea of a single underlying intelligence.",
+      "<strong>Spearman (1927)</strong>: factor analysis suggested one underlying <strong>g factor</strong> running through all abilities.",
+      "Two competing models still alive today — multiple intelligences (Gardner) vs g-loaded measures."
+    ],
+    hook: "Binet: a toolbox of skills. Spearman: one engine driving them all.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Binet -->
+      <rect x="40" y="60" width="300" height="380" class="sv-box-gold"/>
+      <text x="190" y="95" text-anchor="middle" class="sv-text-title" font-size="15">BINET (1905)</text>
+      <text x="190" y="115" text-anchor="middle" class="sv-text-small">multiple faculties</text>
+      <line x1="70" y1="128" x2="310" y2="128" class="sv-line"/>
+      <!-- icon: separate boxes -->
+      <rect x="65" y="155" width="80" height="50" class="sv-box"/>
+      <text x="105" y="180" text-anchor="middle" class="sv-text-small">memory</text>
+      <rect x="160" y="155" width="80" height="50" class="sv-box"/>
+      <text x="200" y="180" text-anchor="middle" class="sv-text-small">judgement</text>
+      <rect x="255" y="155" width="60" height="50" class="sv-box"/>
+      <text x="285" y="180" text-anchor="middle" class="sv-text-small">attention</text>
+      <rect x="65" y="215" width="80" height="50" class="sv-box"/>
+      <text x="105" y="240" text-anchor="middle" class="sv-text-small">vocabulary</text>
+      <rect x="160" y="215" width="80" height="50" class="sv-box"/>
+      <text x="200" y="240" text-anchor="middle" class="sv-text-small">reasoning</text>
+      <rect x="255" y="215" width="60" height="50" class="sv-box"/>
+      <text x="285" y="240" text-anchor="middle" class="sv-text-small">spatial</text>
+      <text x="190" y="300" text-anchor="middle" class="sv-text-italic" font-size="12">no single intelligence</text>
+      <text x="190" y="320" text-anchor="middle" class="sv-text-small">just a bundle of skills</text>
+      <line x1="80" y1="340" x2="300" y2="340" class="sv-line"/>
+      <text x="190" y="365" text-anchor="middle" class="sv-text" font-size="12">PURPOSE: identify</text>
+      <text x="190" y="383" text-anchor="middle" class="sv-text" font-size="12">struggling students</text>
+      <text x="190" y="410" text-anchor="middle" class="sv-text-italic" font-size="12">→ pragmatic, applied</text>
+
+      <!-- Spearman -->
+      <rect x="380" y="60" width="300" height="380" class="sv-box"/>
+      <text x="530" y="95" text-anchor="middle" class="sv-text-title" font-size="15">SPEARMAN (1927)</text>
+      <text x="530" y="115" text-anchor="middle" class="sv-text-small">single g factor</text>
+      <line x1="410" y1="128" x2="650" y2="128" class="sv-line"/>
+      <!-- icon: hierarchy with g at top -->
+      <circle cx="530" cy="180" r="30" class="sv-box-gold"/>
+      <text x="530" y="186" text-anchor="middle" class="sv-text-title" font-size="20" fill="#c9a96e">g</text>
+      <line x1="510" y1="205" x2="445" y2="245" class="sv-line"/>
+      <line x1="525" y1="210" x2="490" y2="245" class="sv-line"/>
+      <line x1="535" y1="210" x2="570" y2="245" class="sv-line"/>
+      <line x1="550" y1="205" x2="615" y2="245" class="sv-line"/>
+      <rect x="420" y="248" width="50" height="35" class="sv-box"/>
+      <text x="445" y="270" text-anchor="middle" class="sv-text-small">verbal</text>
+      <rect x="475" y="248" width="50" height="35" class="sv-box"/>
+      <text x="500" y="270" text-anchor="middle" class="sv-text-small">numeric</text>
+      <rect x="540" y="248" width="55" height="35" class="sv-box"/>
+      <text x="567" y="270" text-anchor="middle" class="sv-text-small">spatial</text>
+      <rect x="600" y="248" width="50" height="35" class="sv-box"/>
+      <text x="625" y="270" text-anchor="middle" class="sv-text-small">memory</text>
+      <text x="530" y="315" text-anchor="middle" class="sv-text-italic" font-size="12">all abilities load on g</text>
+      <text x="530" y="335" text-anchor="middle" class="sv-text-small">factor analysis evidence</text>
+      <line x1="420" y1="355" x2="640" y2="355" class="sv-line"/>
+      <text x="530" y="380" text-anchor="middle" class="sv-text" font-size="12">PURPOSE: explain</text>
+      <text x="530" y="398" text-anchor="middle" class="sv-text" font-size="12">structure of intelligence</text>
+      <text x="530" y="425" text-anchor="middle" class="sv-text-italic" font-size="12">→ theoretical, pure</text>
+    </svg>`
+  },
+  {
+    id: 12, tag: "Education policy", branch: "Sub-fields",
+    title: "The UK <em>tripartite</em> system",
+    sub: "The 1944 Education Act sorted children into three school types based on the 11+ exam. Psychology gave the test, government gave the consequence.",
+    bullets: [
+      "<strong>1944 Education Act</strong> — universal secondary education, free at the point of use.",
+      "<strong>The 11+</strong> exam, age eleven, sorts children into three streams.",
+      "Three school types: <strong>grammar</strong> (academic), <strong>technical</strong> (vocational), <strong>secondary modern</strong> (general).",
+      "Built on the assumption that intelligence is fixed and measurable at age eleven.",
+      "<strong>1965</strong> — comprehensive reform begins; most areas merge the three into one school. Tripartite still exists in pockets."
+    ],
+    hook: "One exam at eleven. Three different lives. The premise — fixed intelligence — was already shaky by then.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <text x="60" y="40" class="sv-text-title">The UK Tripartite System</text>
+      <text x="60" y="60" class="sv-text-small">1944 Education Act → 11+ → three streams</text>
+
+      <!-- Funnel: child → exam -->
+      <rect x="280" y="100" width="160" height="60" class="sv-box"/>
+      <text x="360" y="125" text-anchor="middle" class="sv-text-title" font-size="14">All children</text>
+      <text x="360" y="145" text-anchor="middle" class="sv-text-small">universal access</text>
+
+      <line x1="360" y1="160" x2="360" y2="190" class="sv-line-bright" marker-end="url(#arSplit)"/>
+      <defs>
+        <marker id="arSplit" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96e"/>
+        </marker>
+      </defs>
+
+      <!-- 11+ test -->
+      <rect x="260" y="195" width="200" height="50" class="sv-box-gold"/>
+      <text x="360" y="220" text-anchor="middle" class="sv-text-title" font-size="14">THE 11+</text>
+      <text x="360" y="237" text-anchor="middle" class="sv-text-small">single test, age eleven</text>
+
+      <!-- Three branches -->
+      <line x1="320" y1="245" x2="160" y2="295" class="sv-line-bright" marker-end="url(#arSplit)"/>
+      <line x1="360" y1="245" x2="360" y2="295" class="sv-line-bright" marker-end="url(#arSplit)"/>
+      <line x1="400" y1="245" x2="560" y2="295" class="sv-line-bright" marker-end="url(#arSplit)"/>
+
+      <!-- Grammar -->
+      <rect x="60" y="300" width="200" height="100" class="sv-box-gold"/>
+      <text x="160" y="325" text-anchor="middle" class="sv-text-title" font-size="14">GRAMMAR</text>
+      <text x="160" y="343" text-anchor="middle" class="sv-text-italic" font-size="12">academic</text>
+      <line x1="90" y1="355" x2="230" y2="355" class="sv-line"/>
+      <text x="160" y="375" text-anchor="middle" class="sv-text" font-size="12">→ university</text>
+      <text x="160" y="393" text-anchor="middle" class="sv-text-small">~25% of children</text>
+
+      <!-- Technical -->
+      <rect x="270" y="300" width="180" height="100" class="sv-box"/>
+      <text x="360" y="325" text-anchor="middle" class="sv-text-title" font-size="14">TECHNICAL</text>
+      <text x="360" y="343" text-anchor="middle" class="sv-text-italic" font-size="12">vocational</text>
+      <line x1="295" y1="355" x2="425" y2="355" class="sv-line"/>
+      <text x="360" y="375" text-anchor="middle" class="sv-text" font-size="12">→ skilled trades</text>
+      <text x="360" y="393" text-anchor="middle" class="sv-text-small">always smallest stream</text>
+
+      <!-- Secondary Modern -->
+      <rect x="460" y="300" width="200" height="100" class="sv-box"/>
+      <text x="560" y="325" text-anchor="middle" class="sv-text-title" font-size="14">SEC. MODERN</text>
+      <text x="560" y="343" text-anchor="middle" class="sv-text-italic" font-size="12">general</text>
+      <line x1="490" y1="355" x2="630" y2="355" class="sv-line"/>
+      <text x="560" y="375" text-anchor="middle" class="sv-text" font-size="12">→ workforce at 15</text>
+      <text x="560" y="393" text-anchor="middle" class="sv-text-small">~70% of children</text>
+
+      <!-- 1965 reform -->
+      <rect x="60" y="430" width="600" height="40" stroke="#c9a96e" fill="rgba(201,169,110,0.06)" stroke-width="1.5"/>
+      <text x="360" y="455" text-anchor="middle" class="sv-text-italic" font-size="13">1965 → comprehensive reform merges streams (mostly)</text>
+    </svg>`
+  },
+  {
+    id: 13, tag: "Defining research", branch: "Methodology",
+    title: "Four <em>research intents</em>",
+    sub: "Münsterberg's intent-based logic gives a clean four-way classification of research. Same method, different intent — different category.",
+    bullets: [
+      "<strong>Pure</strong> — knowledge for its own sake. Curiosity-driven. The aristocratic ideal.",
+      "<strong>Basic</strong> — foundational understanding of mechanisms. Builds the toolkit.",
+      "<strong>Applied</strong> — solving an identified real-world problem. Field-driven.",
+      "<strong>Translational</strong> — explicit bridge from lab finding to field use. Now central in medicine, growing in psychology.",
+      "The four are <em>intents</em>, not methods. Same RCT can be any of them depending on why it was run."
+    ],
+    hook: "Method tells you HOW. Intent tells you WHY. The classification follows the why.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <text x="360" y="40" text-anchor="middle" class="sv-text-title">Four Research Intents</text>
+      <text x="360" y="60" text-anchor="middle" class="sv-text-small">classified by goal, not method (Münsterberg)</text>
+
+      <!-- 2x2 grid -->
+      <!-- axes -->
+      <line x1="360" y1="100" x2="360" y2="430" stroke="#3d362d" stroke-dasharray="3 4"/>
+      <line x1="80" y1="265" x2="640" y2="265" stroke="#3d362d" stroke-dasharray="3 4"/>
+
+      <text x="220" y="90" text-anchor="middle" class="sv-text-italic" font-size="12">curiosity-driven</text>
+      <text x="500" y="90" text-anchor="middle" class="sv-text-italic" font-size="12">problem-driven</text>
+      <text x="50" y="150" class="sv-text-italic" font-size="12" transform="rotate(-90 50 150)">theoretical</text>
+      <text x="50" y="380" class="sv-text-italic" font-size="12" transform="rotate(-90 50 380)">practical</text>
+
+      <!-- Top-left: Pure -->
+      <rect x="100" y="110" width="240" height="140" class="sv-box-gold"/>
+      <text x="220" y="138" text-anchor="middle" class="sv-text-title" font-size="14">PURE</text>
+      <line x1="170" y1="148" x2="270" y2="148" class="sv-line"/>
+      <text x="220" y="172" text-anchor="middle" class="sv-text" font-size="12">knowledge for its own</text>
+      <text x="220" y="190" text-anchor="middle" class="sv-text" font-size="12">sake</text>
+      <text x="220" y="220" text-anchor="middle" class="sv-text-small">"why does the mind</text>
+      <text x="220" y="236" text-anchor="middle" class="sv-text-small">do that?"</text>
+
+      <!-- Top-right: Applied -->
+      <rect x="380" y="110" width="240" height="140" class="sv-box"/>
+      <text x="500" y="138" text-anchor="middle" class="sv-text-title" font-size="14">APPLIED</text>
+      <line x1="450" y1="148" x2="550" y2="148" class="sv-line"/>
+      <text x="500" y="172" text-anchor="middle" class="sv-text" font-size="12">solving a defined</text>
+      <text x="500" y="190" text-anchor="middle" class="sv-text" font-size="12">real-world problem</text>
+      <text x="500" y="220" text-anchor="middle" class="sv-text-small">"how do we reduce</text>
+      <text x="500" y="236" text-anchor="middle" class="sv-text-small">false confessions?"</text>
+
+      <!-- Bottom-left: Basic -->
+      <rect x="100" y="280" width="240" height="140" class="sv-box"/>
+      <text x="220" y="308" text-anchor="middle" class="sv-text-title" font-size="14">BASIC</text>
+      <line x1="170" y1="318" x2="270" y2="318" class="sv-line"/>
+      <text x="220" y="342" text-anchor="middle" class="sv-text" font-size="12">foundational</text>
+      <text x="220" y="360" text-anchor="middle" class="sv-text" font-size="12">mechanisms</text>
+      <text x="220" y="390" text-anchor="middle" class="sv-text-small">"how does memory</text>
+      <text x="220" y="406" text-anchor="middle" class="sv-text-small">consolidation work?"</text>
+
+      <!-- Bottom-right: Translational -->
+      <rect x="380" y="280" width="240" height="140" class="sv-box-gold"/>
+      <text x="500" y="308" text-anchor="middle" class="sv-text-title" font-size="14">TRANSLATIONAL</text>
+      <line x1="430" y1="318" x2="570" y2="318" class="sv-line"/>
+      <text x="500" y="342" text-anchor="middle" class="sv-text" font-size="12">lab → field bridge</text>
+      <text x="500" y="370" text-anchor="middle" class="sv-text-small">"taking the consolidation</text>
+      <text x="500" y="386" text-anchor="middle" class="sv-text-small">finding into a clinic</text>
+      <text x="500" y="402" text-anchor="middle" class="sv-text-small">protocol"</text>
+
+      <text x="360" y="455" text-anchor="middle" class="sv-text-italic" font-size="12">→ same method can sit in any of the four boxes</text>
+    </svg>`
+  },
+  {
+    id: 14, tag: "Theory and data", branch: "Methodology",
+    title: "Theory-led vs data-led — <em>Lakatos</em>",
+    sub: "Two ways to drive a research programme. Lakatos's insight: programmes can be progressive (predicting new things) or degenerating (just patching old failures).",
+    bullets: [
+      "<strong>Theory-led</strong>: hypothesis first, then test. Predictions come before evidence.",
+      "<strong>Data-led</strong>: pattern in data first, then theorise. Theory follows evidence.",
+      "<strong>Lakatos progressive shift</strong>: theory predicts <em>new</em> facts that turn out to be true.",
+      "<strong>Lakatos degenerating shift</strong>: theory only adds ad-hoc fixes to explain failures — never predicts anything new.",
+      "Lewin's slogan applies: <em>\"there is nothing so practical as a good theory.\"</em>"
+    ],
+    hook: "Progressive theory predicts. Degenerating theory only excuses.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <text x="360" y="40" text-anchor="middle" class="sv-text-title">Two research engines</text>
+
+      <!-- Theory-led path (top) -->
+      <text x="60" y="90" class="sv-text-italic" font-size="14">Theory-led</text>
+      <rect x="60" y="105" width="100" height="50" class="sv-box-gold"/>
+      <text x="110" y="128" text-anchor="middle" class="sv-text" font-size="12">theory</text>
+      <text x="110" y="145" text-anchor="middle" class="sv-text-small">explains world</text>
+      <line x1="160" y1="130" x2="200" y2="130" class="sv-line-bright" marker-end="url(#arA)"/>
+      <defs>
+        <marker id="arA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96e"/>
+        </marker>
+      </defs>
+      <rect x="200" y="105" width="100" height="50" class="sv-box"/>
+      <text x="250" y="128" text-anchor="middle" class="sv-text" font-size="12">prediction</text>
+      <text x="250" y="145" text-anchor="middle" class="sv-text-small">if X then Y</text>
+      <line x1="300" y1="130" x2="340" y2="130" class="sv-line-bright" marker-end="url(#arA)"/>
+      <rect x="340" y="105" width="100" height="50" class="sv-box"/>
+      <text x="390" y="128" text-anchor="middle" class="sv-text" font-size="12">test</text>
+      <text x="390" y="145" text-anchor="middle" class="sv-text-small">experiment</text>
+      <line x1="440" y1="130" x2="480" y2="130" class="sv-line-bright" marker-end="url(#arA)"/>
+      <rect x="480" y="105" width="160" height="50" class="sv-box"/>
+      <text x="560" y="128" text-anchor="middle" class="sv-text" font-size="12">data</text>
+      <text x="560" y="145" text-anchor="middle" class="sv-text-small">supports / refutes</text>
+
+      <!-- Data-led path (middle) -->
+      <text x="60" y="200" class="sv-text-italic" font-size="14">Data-led</text>
+      <rect x="60" y="215" width="100" height="50" class="sv-box-gold"/>
+      <text x="110" y="238" text-anchor="middle" class="sv-text" font-size="12">data</text>
+      <text x="110" y="255" text-anchor="middle" class="sv-text-small">observed first</text>
+      <line x1="160" y1="240" x2="200" y2="240" class="sv-line-bright" marker-end="url(#arA)"/>
+      <rect x="200" y="215" width="100" height="50" class="sv-box"/>
+      <text x="250" y="238" text-anchor="middle" class="sv-text" font-size="12">pattern</text>
+      <text x="250" y="255" text-anchor="middle" class="sv-text-small">structure emerges</text>
+      <line x1="300" y1="240" x2="340" y2="240" class="sv-line-bright" marker-end="url(#arA)"/>
+      <rect x="340" y="215" width="100" height="50" class="sv-box"/>
+      <text x="390" y="238" text-anchor="middle" class="sv-text" font-size="12">theory</text>
+      <text x="390" y="255" text-anchor="middle" class="sv-text-small">induced</text>
+      <line x1="440" y1="240" x2="480" y2="240" class="sv-line-bright" marker-end="url(#arA)"/>
+      <rect x="480" y="215" width="160" height="50" class="sv-box"/>
+      <text x="560" y="238" text-anchor="middle" class="sv-text" font-size="12">further test</text>
+      <text x="560" y="255" text-anchor="middle" class="sv-text-small">confirm or kill</text>
+
+      <!-- Lakatos box at bottom -->
+      <line x1="60" y1="295" x2="660" y2="295" stroke="#3d362d"/>
+      <text x="360" y="320" text-anchor="middle" class="sv-text-title" font-size="14">Lakatos's question: is the programme progressive or degenerating?</text>
+
+      <rect x="60" y="340" width="290" height="110" class="sv-box-gold"/>
+      <text x="205" y="365" text-anchor="middle" class="sv-text-title" font-size="13" fill="#7ea870">PROGRESSIVE shift</text>
+      <line x1="100" y1="375" x2="310" y2="375" class="sv-line"/>
+      <text x="205" y="395" text-anchor="middle" class="sv-text" font-size="12">predicts NEW facts</text>
+      <text x="205" y="413" text-anchor="middle" class="sv-text" font-size="12">that turn out true</text>
+      <text x="205" y="438" text-anchor="middle" class="sv-text-italic" font-size="12">→ keep the theory</text>
+
+      <rect x="370" y="340" width="290" height="110" class="sv-box"/>
+      <text x="515" y="365" text-anchor="middle" class="sv-text-title" font-size="13" fill="#b56b6b">DEGENERATING shift</text>
+      <line x1="410" y1="375" x2="620" y2="375" class="sv-line"/>
+      <text x="515" y="395" text-anchor="middle" class="sv-text" font-size="12">only ad-hoc fixes</text>
+      <text x="515" y="413" text-anchor="middle" class="sv-text" font-size="12">to past failures</text>
+      <text x="515" y="438" text-anchor="middle" class="sv-text-italic" font-size="12">→ abandon the theory</text>
+    </svg>`
+  },
+  {
+    id: 15, tag: "The woman problem", branch: "Prejudice",
+    title: "APA vs <em>Experimentalists</em>",
+    sub: "Two American organisations took opposite stances on women. The APA admitted them. Titchener's Experimentalists shut them out — and explained it as a matter of equipment.",
+    bullets: [
+      "<strong>APA</strong> (1892, Hall): admitted women from the start. Calkins became first female president in 1905.",
+      "<strong>Experimentalists</strong> (1904, Titchener): excluded women until <strong>1928</strong>.",
+      "Boring's defence: women might be \"uncomfortable around the <strong>brass instruments</strong>\" of the lab.",
+      "Rutherford (2015) showed this was a fig leaf for <strong>status protection</strong>, not concern for women.",
+      "Mary Calkins, Beatrice Edgell, and Eleanor Gibson worked around exclusion and built careers anyway."
+    ],
+    hook: "When the excuse is the equipment, the issue is never the equipment.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <text x="360" y="40" text-anchor="middle" class="sv-text-title">Two organisations · two attitudes</text>
+
+      <!-- APA -->
+      <rect x="40" y="80" width="300" height="370" class="sv-box-gold"/>
+      <text x="190" y="115" text-anchor="middle" class="sv-text-title" font-size="15">APA</text>
+      <text x="190" y="135" text-anchor="middle" class="sv-text-small">founded 1892 · Hall</text>
+      <line x1="70" y1="148" x2="310" y2="148" class="sv-line"/>
+      <text x="190" y="180" text-anchor="middle" class="sv-text-italic" font-size="13">Women admitted</text>
+      <text x="190" y="200" text-anchor="middle" class="sv-text-small">from day one</text>
+      <line x1="100" y1="220" x2="280" y2="220" class="sv-line"/>
+      <!-- Three pioneers -->
+      <text x="60" y="250" class="sv-text-italic" font-size="12">1905</text>
+      <text x="100" y="250" class="sv-text" font-size="12">Mary Calkins</text>
+      <text x="100" y="268" class="sv-text-small">first female APA president</text>
+      <text x="60" y="305" class="sv-text-italic" font-size="12">UK</text>
+      <text x="100" y="305" class="sv-text" font-size="12">Beatrice Edgell</text>
+      <text x="100" y="323" class="sv-text-small">first UK woman psych PhD</text>
+      <text x="100" y="338" class="sv-text-small">BPS pres. 1928–32</text>
+      <text x="60" y="380" class="sv-text-italic" font-size="12">later</text>
+      <text x="100" y="380" class="sv-text" font-size="12">Eleanor Gibson</text>
+      <text x="100" y="398" class="sv-text-small">visual cliff studies</text>
+      <text x="100" y="413" class="sv-text-small">admitted to Experimentalists 1949</text>
+      <text x="190" y="440" text-anchor="middle" class="sv-text-italic" font-size="12" fill="#7ea870">→ inclusion (uneven, but real)</text>
+
+      <!-- Experimentalists -->
+      <rect x="380" y="80" width="300" height="370" stroke="#b56b6b" fill="rgba(181,107,107,0.05)" stroke-width="1.5"/>
+      <text x="530" y="115" text-anchor="middle" class="sv-text-title" font-size="15" fill="#b56b6b">EXPERIMENTALISTS</text>
+      <text x="530" y="135" text-anchor="middle" class="sv-text-small">founded 1904 · Titchener</text>
+      <line x1="410" y1="148" x2="650" y2="148" class="sv-line"/>
+      <text x="530" y="180" text-anchor="middle" class="sv-text-italic" font-size="13">Women EXCLUDED</text>
+      <text x="530" y="200" text-anchor="middle" class="sv-text-small">until 1928</text>
+      <line x1="440" y1="220" x2="620" y2="220" class="sv-line"/>
+      <!-- Boring's excuse -->
+      <text x="530" y="250" text-anchor="middle" class="sv-text-italic" font-size="12">Boring's defence:</text>
+      <rect x="410" y="265" width="240" height="60" stroke="#b56b6b" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+      <text x="530" y="288" text-anchor="middle" class="sv-text" font-size="12">"the brass instruments</text>
+      <text x="530" y="305" text-anchor="middle" class="sv-text" font-size="12">might make them</text>
+      <text x="530" y="320" text-anchor="middle" class="sv-text" font-size="12">uncomfortable"</text>
+
+      <text x="530" y="355" text-anchor="middle" class="sv-text-italic" font-size="12">Rutherford 2015:</text>
+      <text x="530" y="375" text-anchor="middle" class="sv-text-small">a fig leaf for status protection</text>
+      <text x="530" y="395" text-anchor="middle" class="sv-text-small">not concern for women</text>
+      <text x="530" y="440" text-anchor="middle" class="sv-text-italic" font-size="12" fill="#b56b6b">→ same prejudice as pure/applied</text>
+    </svg>`
+  },
+  {
+    id: 16, tag: "Modern legacy", branch: "Today",
+    title: "League tables and the <em>research–teaching myth</em>",
+    sub: "The class hierarchy survived. It now runs through Russell Group, Ivy League, RAE/REF rankings — and a widely repeated assumption about teaching that the evidence does not support.",
+    bullets: [
+      "<strong>Russell Group</strong> / <strong>Ivy League</strong> = modern descendants of the old prestige hierarchy.",
+      "<strong>RAE</strong> (1986) → <strong>REF</strong> (2014): research assessment determines funding and status.",
+      "REF added <strong>impact</strong> = <em>reach</em> + <em>significance</em> + <em>research basis</em>.",
+      "Common claim: research-active staff teach better. Evidence base says <strong>no clear link</strong>.",
+      "Studies: McKenzie 2018 · Teichler 2022 · Palali 2018 · Wolszczak-Derlacz 2014 — all find weak or null effects."
+    ],
+    hook: "League tables are class hierarchy in spreadsheet form. The research-teaching link is a story we like, not a finding we have.",
+    svg: `<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+      <text x="360" y="40" text-anchor="middle" class="sv-text-title">Modern Prestige Architecture</text>
+
+      <!-- Top: hierarchy -->
+      <rect x="60" y="70" width="600" height="120" class="sv-box"/>
+      <text x="360" y="100" text-anchor="middle" class="sv-text-title" font-size="14">Inheritance of the snobbery</text>
+      <line x1="200" y1="110" x2="520" y2="110" class="sv-line"/>
+      <text x="160" y="140" text-anchor="middle" class="sv-text" font-size="12">Russell Group</text>
+      <text x="160" y="158" text-anchor="middle" class="sv-text-small">UK · 24 universities</text>
+      <text x="360" y="140" text-anchor="middle" class="sv-text" font-size="12">Ivy League</text>
+      <text x="360" y="158" text-anchor="middle" class="sv-text-small">US · 8 universities</text>
+      <text x="560" y="140" text-anchor="middle" class="sv-text" font-size="12">RAE → REF</text>
+      <text x="560" y="158" text-anchor="middle" class="sv-text-small">UK · 1986 → 2014</text>
+      <text x="360" y="180" text-anchor="middle" class="sv-text-italic" font-size="12">old hierarchy → modern league tables</text>
+
+      <!-- Middle: REF impact formula -->
+      <rect x="60" y="210" width="600" height="80" class="sv-box-gold"/>
+      <text x="360" y="240" text-anchor="middle" class="sv-text-title" font-size="14">REF impact = reach + significance + research basis</text>
+      <line x1="200" y1="250" x2="520" y2="250" class="sv-line"/>
+      <text x="160" y="275" text-anchor="middle" class="sv-text-small">how many affected</text>
+      <text x="360" y="275" text-anchor="middle" class="sv-text-small">how deeply affected</text>
+      <text x="560" y="275" text-anchor="middle" class="sv-text-small">linked to published work</text>
+
+      <!-- Bottom: research-teaching myth -->
+      <rect x="60" y="310" width="600" height="140" stroke="#b56b6b" fill="rgba(181,107,107,0.05)" stroke-width="1.5"/>
+      <text x="360" y="340" text-anchor="middle" class="sv-text-title" font-size="14" fill="#b56b6b">The research-teaching nexus is a myth</text>
+      <line x1="220" y1="350" x2="500" y2="350" stroke="#b56b6b" stroke-width="1"/>
+      <text x="360" y="375" text-anchor="middle" class="sv-text" font-size="12">Claim: research-active staff are better teachers</text>
+      <text x="360" y="395" text-anchor="middle" class="sv-text-italic" font-size="12">Evidence: weak or null effect across studies</text>
+      <text x="360" y="425" text-anchor="middle" class="sv-text-small">McKenzie 2018 · Teichler 2022 · Palali 2018 · Wolszczak-Derlacz 2014</text>
+    </svg>`
+  }
+];
+
+/* ===========================================================================
+   FLASHCARDS DATA
+   =========================================================================== */
+const flashcards = [
+  { topic: "Foundations", front: "Pure science", back: "Knowledge for its own sake. Curiosity-driven, no immediate application required. Historically the work of the leisured aristocracy in European universities." },
+  { topic: "Foundations", front: "Applied science", back: "Knowledge produced to solve a real-world problem. Defined by <em>intent</em>, not by method. Historically tied to trades and professions." },
+  { topic: "Foundations", front: "Basic research", back: "Foundational study of mechanisms — building the theoretical toolkit. Sits between pure and applied; theoretical, but with eventual use in mind." },
+  { topic: "Foundations", front: "Translational research", back: "Explicit bridge from lab finding to field application. Now central in medicine and increasingly important in psychology." },
+  { topic: "Foundations", front: "Pragmatism", back: "Philosophical position (Peirce, James) that the truth of an idea is what it does — what difference it makes in practice. Foundation of functionalism." },
+  { topic: "Schools", front: "Structuralism", back: "Wundt and Titchener. Studies the elements of consciousness via introspection. Asks <em>what</em> the mind is made of. Now extinct as a school." },
+  { topic: "Schools", front: "Functionalism", back: "William James. Studies what consciousness <em>does</em> — its adaptive function. Rooted in Darwin and pragmatism. Parent of applied psychology." },
+  { topic: "Schools", front: "Native reactions", back: "James's term for innate, automatic responses we are born with — fear, curiosity, attention, imitation. The base layer of behaviour." },
+  { topic: "Schools", front: "Habits", back: "Learned, automated patterns built by repetition on top of native reactions. Education's job, James argued, is to install useful habits while the mind is still pliable." },
+  { topic: "Schools", front: "Brick wall hypothesis", back: "The view that pure and applied science are sealed off from each other and knowledge cannot cross. The chapter argues this is a social fiction, not a description of how science works." },
+  { topic: "Schools", front: "Coalescence hypothesis", back: "The view that pure and applied blend at the edges and ideas flow both ways — questions from the field generate theory; theory generates application." },
+  { topic: "Figures", front: "William James (1842–1910)", back: "Founder of American functionalism. Wrote <em>Principles of Psychology</em> (1890) and <em>Talks to Teachers</em> (1899). Suffered depression; wrote with experiential weight." },
+  { topic: "Figures", front: "G. Stanley Hall (1846–1924)", back: "First American PhD in psychology. Founded the APA in 1892. Wrote <em>Adolescence</em> (1904), defining it as a period of storm and stress. Promoted sex-segregated schooling." },
+  { topic: "Figures", front: "Hugo Münsterberg (1863–1916)", back: "Father of applied psychology. Defined applied research by <em>intent</em>, not method. Founded forensic, industrial and clinical sub-fields. Wrote <em>On the Witness Stand</em> (1908)." },
+  { topic: "Figures", front: "Lightner Witmer (1867–1956)", back: "Coined the term <em>clinical psychology</em>. Opened the first psychological clinic at the University of Pennsylvania in 1896. Environmentalist in approach." },
+  { topic: "Figures", front: "Walter Dill Scott (1869–1955)", back: "Founder of industrial / organisational psychology. Two contributions: advertising psychology and personnel selection. Worked with the US Army during WWI." },
+  { topic: "Figures", front: "Alfred Binet (1857–1911)", back: "Built the first practical intelligence test (Binet–Simon, 1905). Held that intelligence is multiple mental faculties; <em>rejected</em> the idea of a single underlying intelligence." },
+  { topic: "Sub-fields", front: "Suggestibility", back: "The tendency for memory and report to be shaped by leading questions and post-event information. A core forensic finding. Modern eyewitness research builds on Münsterberg." },
+  { topic: "Sub-fields", front: "False memory", back: "A memory experienced as real but inconsistent with what actually happened. Often produced by suggestion. Münsterberg demonstrated this in classroom experiments." },
+  { topic: "Sub-fields", front: "Three forensic principles", back: "Münsterberg's three: (1) memory is reconstructive, (2) witnesses are suggestible, (3) lie detection is unreliable. All three remain active fields of research." },
+  { topic: "Sub-fields", front: "Moral treatment", back: "Pre-Witmer approach to mental difficulty (Tuke in the UK, Dix in the US). Asylums made kinder and more dignified. Still institutional; Witmer left this model behind." },
+  { topic: "Sub-fields", front: "Spearman's g", back: "A single underlying intelligence factor proposed by Spearman in 1927 on the basis of factor analysis. All cognitive abilities load on g, in this view. Contrast Binet's multiple faculties." },
+  { topic: "Sub-fields", front: "Mental faculties", back: "Binet's view: intelligence is a bundle of separate skills (memory, judgement, attention, vocabulary, reasoning, spatial). No single underlying factor." },
+  { topic: "Policy", front: "1944 Education Act", back: "Established universal free secondary education in the UK. Sorted children into three streams via the 11+: grammar, technical, secondary modern. Built on the assumption of fixed measurable intelligence." },
+  { topic: "Policy", front: "Tripartite system", back: "Three-stream UK secondary education following the 1944 Act: grammar (academic), technical (vocational), secondary modern (general). Most areas merged into comprehensive schools from 1965." },
+  { topic: "Methodology", front: "Münsterberg's intent-based definition", back: "Research is classified by its goal, not by its method. Same experiment can be pure, basic, applied or translational depending on why it was run." },
+  { topic: "Methodology", front: "Theory-led research", back: "Hypothesis precedes data. Theory generates predictions; experiments test them. Lewin: <em>nothing so practical as a good theory</em>." },
+  { topic: "Methodology", front: "Data-led research", back: "Pattern in data precedes theory. Theory is induced from observation. Often used in early stages of a field or with rich datasets." },
+  { topic: "Methodology", front: "Lakatos progressive shift", back: "A research programme that <em>predicts new facts</em> that turn out to be true. Sign that the programme is healthy; keep building on it." },
+  { topic: "Methodology", front: "Lakatos degenerating shift", back: "A research programme that only adds <em>ad-hoc fixes</em> to past failures and never predicts anything new. Sign of a dying programme; abandon it." },
+  { topic: "Today", front: "RAE → REF", back: "UK research assessment exercises. RAE began in 1986; REF replaced it in 2014 and added <em>impact</em> as a third pillar. Determines university funding and rankings." },
+  { topic: "Today", front: "Impact (REF)", back: "<em>Reach</em> (how many affected) + <em>significance</em> (depth of effect) + <em>research basis</em> (links to published work). Introduced 2014." },
+  { topic: "Prejudice", front: "Boring's brass instruments", back: "Boring's defence of women's exclusion from the Experimentalists: women might be uncomfortable around lab apparatus. Rutherford (2015) showed this was status protection, not concern." }
+];
+
+/* ===========================================================================
+   MCQ DATA
+   =========================================================================== */
+const mcqs = [
+  {
+    q: "What is the chapter's central claim about the prestige gap between pure and applied science?",
+    options: [
+      "Pure science uses superior methods, hence the higher prestige.",
+      "The gap is class-inherited from European tradition, not methodological.",
+      "Applied science is a recent invention so naturally has lower status.",
+      "The gap reflects the harder mathematics required for pure work."
+    ],
+    correct: 1,
+    explain: "The chapter argues the hierarchy is a <em>social attitude</em> inherited from European class structures — universities for the leisured aristocracy, technical institutes for the trades. The same method can be pure or applied; the label tracks intent and prestige, not rigour."
+  },
+  {
+    q: "Why did Wundt position psychology as a pure science?",
+    options: [
+      "Because applied work was impossible with the equipment of the day.",
+      "Because the German universities only admitted disciplines framed as pure.",
+      "Because James had already claimed the applied territory.",
+      "Because he was personally hostile to industry."
+    ],
+    correct: 1,
+    explain: "European universities sorted pure science into universities and applied work into lower-status technical institutes. Wundt deliberately framed psychology as pure to win university acceptance — a strategic move shaped by the social hierarchy of German higher education."
+  },
+  {
+    q: "Münsterberg's intent-based definition of applied psychology means…",
+    options: [
+      "Applied research must use clinical or workplace methods.",
+      "Applied research must avoid laboratory equipment.",
+      "Research is classified as applied based on its goal, not its method.",
+      "Only research funded by industry counts as applied."
+    ],
+    correct: 2,
+    explain: "Münsterberg's key move was classifying research by <em>intent</em>. The same experiment can be pure (curiosity-driven) or applied (problem-driven). Method is irrelevant to the classification — purpose is everything. This single move opened forensic, industrial and clinical sub-fields."
+  },
+  {
+    q: "What did Alfred Binet believe about intelligence?",
+    options: [
+      "It is a single underlying factor (g) that runs through all abilities.",
+      "It is fixed at birth and cannot be improved.",
+      "It is a bundle of multiple mental faculties; he rejected the idea of a single intelligence.",
+      "It is best measured through brain imaging."
+    ],
+    correct: 2,
+    explain: "Binet held that intelligence consists of multiple faculties — memory, judgement, attention, vocabulary, reasoning. He explicitly <em>rejected</em> the idea of a single underlying intelligence. Spearman's g came later (1927) and pulled in the opposite direction."
+  },
+  {
+    q: "Lightner Witmer's clinical psychology differed from earlier moral treatment because it…",
+    options: [
+      "Used asylums but made them kinder.",
+      "Treated learning difficulties in an outpatient clinic, taking an environmentalist approach.",
+      "Focused on adult psychosis using medication.",
+      "Combined religion with talk therapy."
+    ],
+    correct: 1,
+    explain: "Moral treatment (Tuke, Dix) made asylums kinder but kept the institutional model. Witmer opened a university clinic in 1896 that worked with schoolchildren on learning difficulties, treating the problem as <em>environmental</em> rather than constitutional or moral. He coined the term clinical psychology."
+  },
+  {
+    q: "Which best describes the brick wall hypothesis?",
+    options: [
+      "Pure and applied science blend at the edges and ideas flow both ways.",
+      "Pure and applied are sealed-off worlds and knowledge cannot cross between them.",
+      "Applied science always rebuilds itself from pure science findings.",
+      "The boundary between pure and applied changes with the funding environment."
+    ],
+    correct: 1,
+    explain: "The brick wall hypothesis is the view that pure and applied are isolated. The chapter rejects it in favour of the <em>coalescence</em> view — ideas flow both ways. Lewin's slogan <em>nothing so practical as a good theory</em> captures the coalescence side."
+  },
+  {
+    q: "What were Münsterberg's three forensic principles?",
+    options: [
+      "Witnesses lie · juries are biased · police coerce confessions.",
+      "Memory is reconstructive · witnesses are suggestible · lie detection is unreliable.",
+      "Eyewitnesses are accurate · DNA is decisive · expert witnesses are objective.",
+      "Confession is reliable · cross-examination works · the polygraph is conclusive."
+    ],
+    correct: 1,
+    explain: "Münsterberg's three principles, laid out in <em>On the Witness Stand</em> (1908): memory rebuilds itself on each retrieval, witnesses are vulnerable to leading questions and post-event information, and physiological signals correlate weakly with deception. All three remain active research areas; modern eyewitness research (Loftus) builds on them directly."
+  },
+  {
+    q: "Why did the Experimentalists, founded by Titchener in 1904, exclude women?",
+    options: [
+      "Women were genuinely uncomfortable around the lab equipment, as Boring documented.",
+      "Boring's brass-instruments excuse was a fig leaf for status protection, per Rutherford 2015.",
+      "Women had not earned doctorates by that point.",
+      "The APA had a separate female-only branch, so women had their own organisation."
+    ],
+    correct: 1,
+    explain: "Boring justified the exclusion by saying women would be uncomfortable around the brass instruments of the experimental laboratory. Rutherford's 2015 historical analysis showed this was a post-hoc justification — the actual function was to protect the prestige of the experimental in-group. The same prejudice driving the pure/applied hierarchy was at work."
+  },
+  {
+    q: "Mary Calkins is significant because she…",
+    options: [
+      "Was the first woman admitted to the Experimentalists in 1928.",
+      "Was the first female president of the APA, in 1905, despite being denied a Harvard PhD.",
+      "Founded clinical psychology alongside Witmer.",
+      "Wrote the first textbook of applied psychology."
+    ],
+    correct: 1,
+    explain: "Calkins completed all PhD requirements at Harvard but was denied the degree because she was a woman. She nonetheless became the first female president of the APA in 1905. Her career stands as evidence that exclusion from formal credentials did not reflect the quality of women's work."
+  },
+  {
+    q: "What does REF impact consist of?",
+    options: [
+      "Citations · grants · awards.",
+      "Reach · significance · research basis.",
+      "Teaching · research · administration.",
+      "National · international · global reputation."
+    ],
+    correct: 1,
+    explain: "When the REF replaced the RAE in 2014, it added impact as a third pillar — assessed as <em>reach</em> (how many people affected), <em>significance</em> (depth of effect), and <em>research basis</em> (link to published peer-reviewed work). It rewards applied consequence in a system that historically rewarded pure outputs."
+  },
+  {
+    q: "A Lakatos progressive problem shift is one in which…",
+    options: [
+      "The theory is patched with ad-hoc fixes to handle failures.",
+      "The theory predicts new facts that turn out to be true.",
+      "The theory is replaced by another after a single failed test.",
+      "The theory is preserved by reinterpreting all prior data."
+    ],
+    correct: 1,
+    explain: "Lakatos asked whether a research programme is progressive (predicts genuinely new facts that turn out true — keep building) or degenerating (only patches old failures with ad-hoc adjustments — abandon it). The criterion is <em>predictive novelty</em>, not survival of any single test."
+  },
+  {
+    q: "What does the evidence say about the research-teaching nexus in higher education?",
+    options: [
+      "Research-active staff teach significantly better.",
+      "Research-active staff teach significantly worse because they are distracted.",
+      "The link is weak or null across multiple studies.",
+      "The link is strong only in STEM disciplines."
+    ],
+    correct: 2,
+    explain: "Despite the widespread assumption that research strengthens teaching, the evidence base — McKenzie 2018, Teichler 2022, Palali 2018, Wolszczak-Derlacz 2014 — finds weak or null effects. The research-teaching nexus is a story universities tell, not a robust empirical finding."
+  },
+  {
+    q: "James's <em>Talks to Teachers</em> rests on which distinction?",
+    options: [
+      "Conscious vs unconscious processing.",
+      "Native reactions (innate) vs habits (learned).",
+      "Short-term vs long-term memory.",
+      "Nature vs nurture."
+    ],
+    correct: 1,
+    explain: "James told teachers their job was to install useful <em>habits</em> on top of the child's <em>native reactions</em>. Native reactions are innate triggers (fear, attention, curiosity); habits are learned automations built by repetition. The view borrows directly from Herbart's principle of association."
+  },
+  {
+    q: "The UK tripartite system sorted children at age 11 into three streams. Which were they?",
+    options: [
+      "Grammar · public · independent.",
+      "Grammar · technical · secondary modern.",
+      "Comprehensive · grammar · faith.",
+      "Vocational · general · academic."
+    ],
+    correct: 1,
+    explain: "The 1944 Education Act used the 11+ exam to sort children into <em>grammar</em> (academic), <em>technical</em> (vocational, always the smallest stream), and <em>secondary modern</em> (general, the majority). The system rested on the assumption that intelligence was fixed and reliably measurable at eleven. Comprehensive reform from 1965 merged most of it."
+  },
+  {
+    q: "What is the cleanest summary of the chapter's argument about prejudice in psychology?",
+    options: [
+      "Prejudice in psychology was a personal failing of a few key figures, now corrected.",
+      "Prejudice in psychology mirrors the same social hierarchy that demoted applied research — both treat certain work and certain people as less serious.",
+      "Prejudice in psychology was confined to nineteenth-century Europe and never crossed the Atlantic.",
+      "Prejudice in psychology was an inevitable feature of any new discipline."
+    ],
+    correct: 1,
+    explain: "The chapter's structural argument is that the prestige gap between pure and applied, and the exclusion of women, share a common root: an inherited social attitude that codes some work and some people as serious, others as not. Recognising the pattern in one place helps you see it in the other — and in modern league tables and research assessment too."
+  }
+];
+
+/* ===========================================================================
+   APP LOGIC
+   =========================================================================== */
+
+// Section navigation
+const navBtns = document.querySelectorAll('.nav-btn');
+const sections = document.querySelectorAll('.section');
+navBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.target;
+    showSection(target);
+  });
+});
+function showSection(name) {
+  navBtns.forEach(b => b.classList.toggle('active', b.dataset.target === name));
+  sections.forEach(s => s.classList.toggle('active', s.id === name));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Overview lesson grid
+const lessonGrid = document.getElementById('lessonGrid');
+lessons.forEach((l, i) => {
+  const card = document.createElement('button');
+  card.className = 'lesson-card';
+  card.innerHTML = `
+    <div class="lesson-card-num">Lesson ${String(i + 1).padStart(2, '0')}</div>
+    <div class="lesson-card-title">${l.title}</div>
+    <div class="lesson-card-tag">${l.branch}</div>
+  `;
+  card.addEventListener('click', () => {
+    currentLesson = i;
+    renderLesson();
+    showSection('lessons');
+  });
+  lessonGrid.appendChild(card);
+});
+
+// Lessons
+let currentLesson = 0;
+const lessonContent = document.getElementById('lessonContent');
+const lessonNum = document.getElementById('lessonNum');
+const prevLessonBtn = document.getElementById('prevLesson');
+const nextLessonBtn = document.getElementById('nextLesson');
+
+function renderLesson() {
+  const l = lessons[currentLesson];
+  lessonNum.textContent = currentLesson + 1;
+  lessonContent.innerHTML = `
+    <div class="lesson-header">
+      <div class="lesson-header-tag">${l.branch} · ${l.tag}</div>
+      <h2 class="lesson-title">${l.title}</h2>
+      <p class="lesson-sub">${l.sub}</p>
+    </div>
+    <div class="lesson-body">
+      <div class="diagram-frame">${l.svg}</div>
+      <div class="lesson-side">
+        <div class="key-points">
+          <div class="key-points-title">Key Points</div>
+          <ul>${l.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+        </div>
+        <div class="memory-hook">
+          <div class="memory-hook-title">Memory Hook</div>
+          <p>${l.hook}</p>
+        </div>
+      </div>
+    </div>
+  `;
+  prevLessonBtn.disabled = currentLesson === 0;
+  nextLessonBtn.disabled = currentLesson === lessons.length - 1;
+}
+prevLessonBtn.addEventListener('click', () => { if (currentLesson > 0) { currentLesson--; renderLesson(); } });
+nextLessonBtn.addEventListener('click', () => { if (currentLesson < lessons.length - 1) { currentLesson++; renderLesson(); } });
+renderLesson();
+
+// Flashcards
+const fcFiltersEl = document.getElementById('fcFilters');
+const fcCard = document.getElementById('flashcard');
+const fcTopic = document.getElementById('fcTopic');
+const fcTopicBack = document.getElementById('fcTopicBack');
+const fcFront = document.getElementById('fcFront');
+const fcBack = document.getElementById('fcBack');
+const fcNum = document.getElementById('fcNum');
+const fcTotal = document.getElementById('fcTotal');
+const fcPrev = document.getElementById('fcPrev');
+const fcNext = document.getElementById('fcNext');
+const fcShuffle = document.getElementById('fcShuffle');
+const fcReset = document.getElementById('fcReset');
+
+const topics = ['All', ...Array.from(new Set(flashcards.map(c => c.topic)))];
+let activeFilter = 'All';
+let fcDeck = flashcards.slice();
+let fcIndex = 0;
+
+topics.forEach(t => {
+  const btn = document.createElement('button');
+  btn.className = 'fc-filter' + (t === 'All' ? ' active' : '');
+  btn.textContent = t;
+  btn.addEventListener('click', () => {
+    activeFilter = t;
+    document.querySelectorAll('.fc-filter').forEach(b => b.classList.toggle('active', b.textContent === t));
+    fcDeck = t === 'All' ? flashcards.slice() : flashcards.filter(c => c.topic === t);
+    fcIndex = 0;
+    renderFc();
+  });
+  fcFiltersEl.appendChild(btn);
+});
+const actions = document.createElement('div');
+actions.className = 'fc-actions';
+fcFiltersEl.appendChild(actions);
+
+function renderFc() {
+  if (fcDeck.length === 0) return;
+  const c = fcDeck[fcIndex];
+  fcCard.classList.remove('flipped');
+  setTimeout(() => {
+    fcTopic.textContent = c.topic;
+    fcTopicBack.textContent = c.topic;
+    fcFront.innerHTML = c.front;
+    fcBack.innerHTML = c.back;
+  }, 100);
+  fcNum.textContent = fcIndex + 1;
+  fcTotal.textContent = fcDeck.length;
+}
+fcCard.addEventListener('click', () => fcCard.classList.toggle('flipped'));
+fcPrev.addEventListener('click', () => { fcIndex = (fcIndex - 1 + fcDeck.length) % fcDeck.length; renderFc(); });
+fcNext.addEventListener('click', () => { fcIndex = (fcIndex + 1) % fcDeck.length; renderFc(); });
+fcShuffle.addEventListener('click', () => {
+  for (let i = fcDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [fcDeck[i], fcDeck[j]] = [fcDeck[j], fcDeck[i]];
+  }
+  fcIndex = 0;
+  renderFc();
+});
+fcReset.addEventListener('click', () => {
+  fcDeck = activeFilter === 'All' ? flashcards.slice() : flashcards.filter(c => c.topic === activeFilter);
+  fcIndex = 0;
+  renderFc();
+});
+renderFc();
+
+// MCQ
+const mcqQuestion = document.getElementById('mcqQuestion');
+const mcqOptions = document.getElementById('mcqOptions');
+const mcqFeedback = document.getElementById('mcqFeedback');
+const mcqFeedbackText = document.getElementById('mcqFeedbackText');
+const mcqFeedbackLabel = document.getElementById('mcqFeedbackLabel');
+const mcqNumEl = document.getElementById('mcqNum');
+const mcqScore = document.getElementById('mcqScore');
+const mcqProgressFill = document.getElementById('mcqProgressFill');
+const mcqNextBtn = document.getElementById('mcqNext');
+const mcqRestartBtn = document.getElementById('mcqRestart');
+const mcqStage = document.getElementById('mcqStage');
+
+let mcqIndex = 0;
+let mcqScoreVal = 0;
+let mcqAnswered = false;
+
+function renderMcq() {
+  if (mcqIndex >= mcqs.length) { renderMcqFinal(); return; }
+  const m = mcqs[mcqIndex];
+  mcqAnswered = false;
+  mcqQuestion.innerHTML = m.q;
+  mcqNumEl.textContent = mcqIndex + 1;
+  mcqScore.textContent = mcqScoreVal;
+  mcqProgressFill.style.width = ((mcqIndex + 1) / mcqs.length * 100) + '%';
+  mcqOptions.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D'];
+  m.options.forEach((opt, i) => {
+    const b = document.createElement('button');
+    b.className = 'mcq-option';
+    b.innerHTML = `<span class="mcq-option-letter">${letters[i]}</span><span>${opt}</span>`;
+    b.addEventListener('click', () => handleAnswer(b, i, m));
+    mcqOptions.appendChild(b);
+  });
+  mcqFeedback.classList.remove('show');
+  mcqNextBtn.disabled = true;
+  mcqNextBtn.textContent = mcqIndex === mcqs.length - 1 ? 'See result →' : 'Next question →';
+}
+function handleAnswer(btn, i, m) {
+  if (mcqAnswered) return;
+  mcqAnswered = true;
+  const correct = i === m.correct;
+  if (correct) mcqScoreVal++;
+  Array.from(mcqOptions.children).forEach((b, idx) => {
+    b.disabled = true;
+    if (idx === m.correct) b.classList.add('correct');
+    else if (idx === i) b.classList.add('incorrect');
+  });
+  mcqFeedbackLabel.textContent = correct ? 'Correct' : 'Not quite';
+  mcqFeedbackLabel.style.color = correct ? 'var(--green)' : 'var(--red)';
+  mcqFeedbackText.innerHTML = m.explain;
+  mcqFeedback.classList.add('show');
+  mcqScore.textContent = mcqScoreVal;
+  mcqNextBtn.disabled = false;
+}
+function renderMcqFinal() {
+  mcqStage.innerHTML = `
+    <div class="mcq-final">
+      <div class="mcq-final-num">${mcqScoreVal} / 15</div>
+      <div class="mcq-final-label">${mcqScoreVal >= 13 ? 'Outstanding' : mcqScoreVal >= 10 ? 'Solid grasp' : mcqScoreVal >= 7 ? 'Building well' : 'Worth another pass'}</div>
+      <div class="mcq-final-msg">${mcqScoreVal >= 13 ? 'You have the chapter\'s core arguments under control. Keep the structural argument about prejudice front of mind for essay questions.' : mcqScoreVal >= 10 ? 'You know most of the material. Revisit any lessons where the wrong answer surprised you.' : 'Take another lap through the lessons and the flashcards before the exam. The structural argument about social attitudes shaping science is the chapter\'s spine.'}</div>
+      <button class="fc-btn" id="mcqGoAgain">Try again</button>
+    </div>
+  `;
+  document.getElementById('mcqGoAgain').addEventListener('click', () => {
+    mcqIndex = 0; mcqScoreVal = 0;
+    location.reload();
+  });
+}
+mcqNextBtn.addEventListener('click', () => { mcqIndex++; renderMcq(); });
+mcqRestartBtn.addEventListener('click', () => { mcqIndex = 0; mcqScoreVal = 0; renderMcq(); });
+renderMcq();
+
+// Keyboard nav
+document.addEventListener('keydown', (e) => {
+  const active = document.querySelector('.section.active').id;
+  if (active === 'lessons') {
+    if (e.key === 'ArrowLeft' && currentLesson > 0) { currentLesson--; renderLesson(); }
+    if (e.key === 'ArrowRight' && currentLesson < lessons.length - 1) { currentLesson++; renderLesson(); }
+  } else if (active === 'flashcards') {
+    if (e.key === 'ArrowLeft') fcPrev.click();
+    if (e.key === 'ArrowRight') fcNext.click();
+    if (e.key === ' ') { e.preventDefault(); fcCard.classList.toggle('flipped'); }
+  }
+});
+</script>
+</body>
+</html>
